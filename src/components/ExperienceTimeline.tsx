@@ -1,7 +1,7 @@
 import { Timeline, Card, Collapse, Button, Modal } from 'antd'
-import { RocketOutlined, TeamOutlined, CodeOutlined, SettingOutlined } from '@ant-design/icons'
 import { useState } from 'react'
 import type { TimelineItemProps } from 'antd'
+import CompanyLogo from './CompanyLogo'
 
 interface ExperienceItem {
   title: string
@@ -10,7 +10,6 @@ interface ExperienceItem {
   role: string
   tasks: string[]
   achievements: string[]
-  icon: React.ReactNode
   isMentor?: boolean
 }
 
@@ -32,7 +31,6 @@ const experiences: ExperienceItem[] = [
       'Показываю, как это работает в реальных проектах, которые сам вел (архитектура, оптимизация, работа с легаси)',
       'Требуется знание всего Modern Stack: Next.js 15 (App Router), React 19, Zustand, TanStack Query v5, Vite, инструменты тестирования',
     ],
-    icon: <TeamOutlined />,
     isMentor: true,
   },
   {
@@ -55,7 +53,6 @@ const experiences: ExperienceItem[] = [
       'Глубокая интеграция специфичных библиотек: не просто «использовал OpenLayers», а решил с его помощью конкретные бизнес-задачи (телеметрия, управление)',
       'Архитектурные решения: выбор и обоснование современных, но прагматичных технологий (Zustand, TanStack), ориентируясь на производительность и простоту поддержки',
     ],
-    icon: <CodeOutlined />,
   },
   {
     title: 'Team lead',
@@ -77,7 +74,6 @@ const experiences: ExperienceItem[] = [
       'Мост между бизнесом и разработкой: научился транслировать бизнес-требования (маркетинг, легализация) в технические задачи для команды',
       'Подготовка команды: создание среды, где джуны могли быстро расти за счет четких гайдов, код-ревью и делегирования осмысленных задач',
     ],
-    icon: <RocketOutlined />,
   },
   {
     title: 'Frontend-разработчик',
@@ -95,7 +91,6 @@ const experiences: ExperienceItem[] = [
       'Работа с Legacy и Modern: опыт плавного перевода большого продакшн-проекта на более современную архитектуру без остановки основного развития',
       'Углубление в экосистему React: понимание жизненного цикла приложения на глубоком уровне (рендер на клиенте vs сервере, гидратация)',
     ],
-    icon: <CodeOutlined />,
   },
   {
     title: 'Ведущий программист',
@@ -115,7 +110,6 @@ const experiences: ExperienceItem[] = [
       'Полный цикл фичи: от обсуждения с аналитиком и проектирования API до реализации UI и тестирования',
       'Практика TypeScript: активное использование для типизации стейта (Redux), пропсов и ответов API, что снизило количество runtime-ошибок',
     ],
-    icon: <CodeOutlined />,
   },
   {
     title: 'Системный администратор',
@@ -132,7 +126,6 @@ const experiences: ExperienceItem[] = [
       'Практический fullstack: получил уникальный опыт «от железа до интерфейса» — понимаешь, как написанный код работает в продакшене на реальном сервере',
       'Работа с ограничениями: разработка под внутренние, часто строгие, требования гос. учреждения (безопасность, аудит)',
     ],
-    icon: <SettingOutlined />,
   },
 ]
 
@@ -207,10 +200,14 @@ console.log(counter()) // 2`}
 
 const ExperienceTimeline = () => {
   const timelineItems: TimelineItemProps[] = experiences.map((exp, index) => ({
-    dot: exp.icon,
+    dot: (
+      <div className="p-2">
+        <CompanyLogo company={exp.company} size={64} />
+      </div>
+    ),
     children: (
       <Card
-        className="mb-4 hover:shadow-lg transition-shadow duration-300 border-slate-700"
+        className="mb-4 hover:shadow-lg transition-shadow duration-300 border-slate-700 ml-6"
         title={
           <div className="flex items-center justify-between flex-wrap gap-2">
             <div>

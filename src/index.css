@@ -25,8 +25,24 @@ body {
 }
 
 .ant-timeline-item-head {
-  background-color: #0ea5e9 !important;
-  border-color: #0ea5e9 !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+.ant-timeline-item-head-custom {
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.ant-timeline-item-content {
+  margin-left: 24px !important;
 }
 
 .ant-card {
