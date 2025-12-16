@@ -1,4 +1,4 @@
-import { Timeline, Card, Collapse, Button, Modal } from 'antd'
+import { Timeline, Card, Collapse, Button, Modal, Segmented } from 'antd'
 import { useState } from 'react'
 import type { TimelineItemProps } from 'antd'
 import CompanyLogo from './CompanyLogo'
@@ -198,8 +198,114 @@ console.log(counter()) // 2`}
   )
 }
 
+// Реальный опыт работы
+const realExperiences: ExperienceItem[] = [
+  {
+    title: 'Ментор',
+    company: 'INovexx',
+    period: 'Март 2025 — сейчас (10 месяцев)',
+    role: 'Ментор',
+    tasks: [
+      'Поддержка и ведение учеников с последующим трудоустройством',
+      'Менторю ребят, проводим моки и определив грейд и скилы составляю краткую методологичку. Туда же легенда и резюме в целом',
+      'Материал, курсы, софт коммуникация (очень важно), тех помощь',
+      'Ревью тестовых заданий',
+      'Мок и тех собесы',
+    ],
+    achievements: [
+      'Примерный стек: React, TypeScript, Vite, React Router, ESLint, Prettier, Zustand, Redux Toolkit, SWR, Axios, React Hook Form, Yup, Formik, TanStack Table, MUI DataGrid, React Toastify, Notistack, Material UI, Ant Design, Tailwind, SCSS, Styled Components, Emotion, Lodash, Code Splitting, Lazy loading, Suspense, Skeleton Loaders, PWA, Next.js, Remix, Jest, React Testing Library, Cypress, Playwright, Docker, GitHub Actions, Esbuild, SWC',
+    ],
+    isMentor: true,
+  },
+  {
+    title: 'Ведущий разработчик',
+    company: 'ИГИТ',
+    period: 'Октябрь 2023 — сейчас (2 года и 3 месяца)',
+    role: 'Frontend разработчик / Архитектор клиентской части',
+    tasks: [
+      'testfms.168robotics.com — проект роботов-уборщиков Москвы и Санкт-Петербурга',
+      'Создал архитектуру фронтенда с нуля, заложил масштабируемую основу для будущих модулей и интеграций',
+      'Таблицы antd, связанная фильтрация, формы RHF в том числе и верстка',
+      'Подключил и реализовал прослойку интерактивных карт (OpenLayers) с возможностью переключения на телеметрию (OpenLayers + WebSocket) и управления юнитами',
+      'Мигрировал стор с redux на zustand, в пользу меньшего бандла, хуках и общей простоте и конечно упрощает онбординг',
+    ],
+    achievements: [
+      'Технологии: React, React Router v6+, MUI, MUI X, styled-components, react-query, Zustand, OpenLayers, WebSocket, GitLab CI/CD',
+      'Разработка расширений для Headless CMS Directus: разработал два уникальных расширения для работы с Excel, адаптированных под специфику заказчика. Экспорт — endpoint дополнявший стандартный UX для выгрузки данных в формате .xslx. Импорт — endpoint для обработки сложных Excel-шаблонов, связывание данных со справочниками и загрузка в коллекции Directus. Технологии: Vue.js, Directus Extension SDK, Node.js',
+      'Система удалённого мониторинга и диагностики подстанций. Технологии: React, TypeScript, TailwindCSS, REST API, Sentry. Процесс: смешанная методология — Scrum + Kanban',
+    ],
+  },
+  {
+    title: 'Team lead',
+    company: 'EvenBet Gaming',
+    period: 'Апрель 2022 — Апрель 2023 (1 год и 1 месяц)',
+    role: 'Tech Lead / Team Lead',
+    tasks: [
+      'Проект в сфере игорного бизнеса (gambling). Формат: распределённая команда, Scrum, Jira, ежедневные стендапы, ведение бэклога и поддержка рабочих процессов. Нагрузка: распределенная 55/45 в пользу технички',
+      'Выстроил технические процессы с нуля. Перехватил идею архитектуры от предшественника (hello) в том числе: архитектура (strapi + react + next), пайплайны, CI/CD, линты, прекоммиты, автоматизация сборок, единый стандарт кодовой базы все выстроил и довел до ума',
+      'Заметно сохратил время выхода фич в прод на длинном спринте (с командой прорабатываем причины выхода за срок, к примеру когда у задачи была декомпозиция, тем самым оптимизировав коммуникацию между командой разработки и продуктовым отделом)',
+      'A/B тестирование, метрики, seo tagmanager, подключение лизенций - в том числе',
+      'Менторил и развивал команду — подготовил 2 june-разработчиков до уровня middle+, внедрил внутренние воркшопы и code style-гайд',
+      'Ведение досок (Trello), документация и онбординг (Notion)',
+      'Постоянно на коннекте между технической и продуктовой и маркетинговой частями команд',
+    ],
+    achievements: [
+      'Продвигающие лендинги: React, Next.js, TypeScript, Strapi, Clickhouse, GTM, аналитика, event-трекинг, интеграция лицензий',
+      'Основной продукт (legacy + новая архитектура): ООП, миграция на новую архитектуру, разработка клиентской части кассы, работа с модулями авторизации, платежей, интерфейсов и логики румов',
+      'Проект масштабный, с большим количеством бизнес-сценариев и технических вызовов',
+    ],
+  },
+  {
+    title: 'Frontend-разработчик',
+    company: 'XDSOFT',
+    period: 'Июнь 2020 — Октябрь 2021 (1 год и 5 месяцев)',
+    role: 'Frontend-разработчик',
+    tasks: [
+      'RUSSPASS — сервис планирования путешествий по России (https://russpass.ru)',
+      'Занимался в миграции и рефакторингом текущей кодовой базы компонентов на собственный UI',
+      'Переносил работу с апи на ssr Next\'a',
+      'Так же по возможности оптимизировал на lazy loading',
+    ],
+    achievements: [
+      'Стек: JavaScript, TypeScript, React, Next.js, Redux, HTML5, CSS, Webpack, Git, Figma',
+    ],
+  },
+  {
+    title: 'Ведущий программист',
+    company: 'ЮТЭК-Региональные сети',
+    period: 'Ноябрь 2019 — Июнь 2020 (8 месяцев)',
+    role: 'Ведущий программист (Frontend/Fullstack)',
+    tasks: [
+      'Работа над проектом https://lk.utek-rs.ru/',
+      'Главный кабинет ЛК с возможностью редактирования заявок',
+      'Ограничение прав для различных типов пользователей',
+      'Разделение уже написанной логики и разнесение ее из компонентов React в Redux',
+      'Поднятие сервера в связке (NodeJS, express, PostgreSQL) и перенос логики на новый UI',
+    ],
+    achievements: [
+      'Технологии: JavaScript, React, Redux, Redux Toolkit, TypeScript, HTML5, CSS, Webpack, Git, Figma, Jest',
+    ],
+  },
+  {
+    title: 'Системный администратор',
+    company: 'АУ Югорский НИИ информационных технологий',
+    period: 'Февраль 2018 — Октябрь 2019 (1 год и 9 месяцев)',
+    role: 'Системный администратор / Fullstack-разработчик',
+    tasks: [
+      'Энекейшик + чуть чуть разработчик',
+      'Администрирование машин',
+      'Разработка и поддержка клиентской части веб-приложения',
+      'Занимался разработкой и поддержкой Directus',
+    ],
+    achievements: [],
+  },
+]
+
 const ExperienceTimeline = () => {
-  const timelineItems: TimelineItemProps[] = experiences.map((exp, index) => ({
+  const [isRealMode, setIsRealMode] = useState(false)
+  const currentExperiences = isRealMode ? realExperiences : experiences
+  
+  const timelineItems: TimelineItemProps[] = currentExperiences.map((exp, index) => ({
     dot: (
       <div className="p-2">
         <CompanyLogo company={exp.company} size={64} />
@@ -280,9 +386,46 @@ const ExperienceTimeline = () => {
 
   return (
     <section id="experience" className="py-20 px-4 max-w-5xl mx-auto">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100">
-        Опыт работы
-      </h2>
+      <div className="flex flex-col items-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-slate-100">
+          Опыт работы
+        </h2>
+        <div className="flex justify-center mb-8">
+          <div className="relative">
+            <Segmented
+              value={isRealMode ? 'real' : 'expected'}
+              onChange={(value) => setIsRealMode(value === 'real')}
+              options={[
+                {
+                  label: (
+                    <span className="text-xl md:text-2xl font-bold px-6 py-3 block">
+                      Ожидание
+                    </span>
+                  ),
+                  value: 'expected',
+                },
+                {
+                  label: (
+                    <span className="text-xl md:text-2xl font-bold px-6 py-3 block">
+                      Действительность
+                    </span>
+                  ),
+                  value: 'real',
+                },
+              ]}
+              size="large"
+              block
+              className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 border-2 border-slate-600 rounded-2xl shadow-2xl"
+              style={{
+                minWidth: '500px',
+                height: '70px',
+                fontSize: '20px',
+                padding: '4px',
+              }}
+            />
+          </div>
+        </div>
+      </div>
       <Timeline mode="left" items={timelineItems} />
     </section>
   )
