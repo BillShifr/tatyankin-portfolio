@@ -139,24 +139,55 @@ const ConfettiReveal = () => {
 
   return (
     <>
-      <div className="mt-12">
-        <div className="text-center mb-6">
-          <p className="text-xl md:text-2xl text-slate-300 mb-6 animate-pulse font-medium">
-            узнать почему я не могу устроиться на работу
-          </p>
-          <Button
-            type="primary"
-            size="large"
-            icon={<QuestionCircleOutlined />}
-            onClick={handleReveal}
-            className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-700 border-0 h-14 px-10 text-lg font-bold shadow-2xl hover:shadow-pink-500/50 transform hover:scale-110 transition-all duration-300 animate-pulse hover:animate-none"
-            style={{
-              backgroundSize: '200% 200%',
-              animation: 'gradient 3s ease infinite',
-            }}
-          >
-            узнать
-          </Button>
+      <div className="mt-16 mb-16 flex justify-center">
+        <div 
+          className="relative text-center p-8 md:p-12 rounded-3xl border-2 border-pink-500/30 bg-gradient-to-br from-pink-900/20 via-purple-900/20 to-indigo-900/20 backdrop-blur-sm shadow-2xl hover:shadow-pink-500/30 transition-all duration-500 transform hover:scale-105 animate-pulse hover:animate-none"
+          style={{
+            background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(147, 51, 234, 0.1) 50%, rgba(79, 70, 229, 0.1) 100%)',
+            boxShadow: '0 0 40px rgba(236, 72, 153, 0.3), inset 0 0 40px rgba(147, 51, 234, 0.2)',
+            animation: 'glow-border 3s ease-in-out infinite',
+          }}
+        >
+          {/* Декоративные элементы */}
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-3xl pointer-events-none">
+            <div className="absolute top-0 left-0 w-32 h-32 bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0s' }} />
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          </div>
+
+          <div className="relative z-10">
+            <p 
+              className="text-2xl md:text-3xl lg:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 mb-8 font-bold drop-shadow-lg"
+              style={{
+                textShadow: '0 0 20px rgba(236, 72, 153, 0.5)',
+                animation: 'text-shimmer 3s ease-in-out infinite',
+              }}
+            >
+              узнать почему я не могу устроиться на работу
+            </p>
+            <Button
+              type="primary"
+              size="large"
+              icon={<QuestionCircleOutlined />}
+              onClick={handleReveal}
+              className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-700 border-0 h-16 px-12 text-xl font-bold shadow-2xl hover:shadow-pink-500/50 transform hover:scale-110 transition-all duration-300 relative overflow-hidden group"
+              style={{
+                backgroundSize: '200% 200%',
+                animation: 'gradient-shift 3s ease infinite, button-pulse 2s ease-in-out infinite',
+              }}
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <span>узнать</span>
+                <QuestionCircleOutlined className="animate-spin-slow" />
+              </span>
+              <div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                style={{
+                  animation: 'shimmer 2s infinite',
+                }}
+              />
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -203,7 +234,7 @@ const ConfettiReveal = () => {
             filter: brightness(1.2) drop-shadow(0 0 40px rgba(255, 192, 203, 1));
           }
         }
-        @keyframes gradient {
+        @keyframes gradient-shift {
           0% {
             background-position: 0% 50%;
           }
@@ -213,6 +244,51 @@ const ConfettiReveal = () => {
           100% {
             background-position: 0% 50%;
           }
+        }
+        @keyframes button-pulse {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.4), 0 0 40px rgba(147, 51, 234, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.6), 0 0 60px rgba(147, 51, 234, 0.5);
+          }
+        }
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%) skewX(-12deg);
+          }
+          100% {
+            transform: translateX(200%) skewX(-12deg);
+          }
+        }
+        @keyframes text-shimmer {
+          0%, 100% {
+            background-position: 0% 50%;
+            filter: brightness(1);
+          }
+          50% {
+            background-position: 100% 50%;
+            filter: brightness(1.2);
+          }
+        }
+        @keyframes glow-border {
+          0%, 100% {
+            box-shadow: 0 0 40px rgba(236, 72, 153, 0.3), inset 0 0 40px rgba(147, 51, 234, 0.2), 0 0 0 2px rgba(236, 72, 153, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 60px rgba(236, 72, 153, 0.5), inset 0 0 60px rgba(147, 51, 234, 0.3), 0 0 0 2px rgba(236, 72, 153, 0.5);
+          }
+        }
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 3s linear infinite;
         }
       `}</style>
     </>

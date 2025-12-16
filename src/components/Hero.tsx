@@ -17,7 +17,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden py-8">
       {/* Анимированный фон */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500 rounded-full blur-3xl animate-pulse" />
@@ -25,7 +25,7 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <div className="mb-6">
+        <div className="mb-2">
           {showLenny && (
             <div className="text-6xl mb-4 animate-bounce">( ͡° ͜ʖ ͡°)</div>
           )}
