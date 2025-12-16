@@ -10,6 +10,7 @@ interface ContactMapProps {
 const ContactMap = ({ onToggle }: ContactMapProps) => {
   const [showMetaphor, setShowMetaphor] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
+  const scrollPositionRef = useRef<number>(0)
 
   useEffect(() => {
     if (onToggle) {
@@ -25,10 +26,13 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
 
   const handleToggle = () => {
     const newValue = !showMetaphor
-    setShowMetaphor(newValue)
     if (newValue) {
+      // Сохраняем текущую позицию скролла перед открытием
+      scrollPositionRef.current = window.scrollY
+      setShowMetaphor(true)
       window.dispatchEvent(new CustomEvent('contactMap:open'))
     } else {
+      setShowMetaphor(false)
       window.dispatchEvent(new CustomEvent('contactMap:close'))
     }
   }
@@ -36,6 +40,15 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
   const handleReturn = () => {
     setShowMetaphor(false)
     window.dispatchEvent(new CustomEvent('contactMap:close'))
+    
+    // Восстанавливаем позицию скролла после небольшой задержки
+    setTimeout(() => {
+      if (buttonRef.current) {
+        buttonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      } else {
+        window.scrollTo({ top: scrollPositionRef.current, behavior: 'smooth' })
+      }
+    }, 100)
   }
 
 
@@ -56,10 +69,10 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
         ? createPortal(
             <div className="fixed inset-0 z-[9999] bg-slate-950 flex items-center justify-center overflow-hidden">
               {/* Линия горизонта (вода) */}
-              <div className="absolute left-0 right-0 top-1/2 h-1 bg-gradient-to-r from-transparent via-primary-400/50 to-transparent z-30" />
+              <div className="absolute left-0 right-0 top-[35%] h-1 bg-gradient-to-r from-transparent via-primary-400/50 to-transparent z-30" />
               
               {/* Вода (нижняя часть) */}
-              <div className="absolute inset-0 top-1/2 bg-gradient-to-b from-blue-900/40 via-blue-800/50 to-blue-900/60">
+              <div className="absolute inset-0 top-[35%] bg-gradient-to-b from-blue-900/40 via-blue-800/50 to-blue-900/60">
                 {/* Волны */}
                 <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-blue-700/30 to-transparent animate-wave" />
                 <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-blue-600/20 to-transparent animate-wave-delay" />
@@ -68,39 +81,36 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
               {/* Контейнер для айсберга */}
               <div className="relative z-20 w-full max-w-6xl mx-auto px-4">
                 <div className="iceberg-container">
-                  {/* Видимая часть айсберга (над водой) */}
-                  <div className="iceberg-top">
-                    <div className="iceberg-content">
-                      <div className="text-center">
+                  {/* Единая фигура айсберга */}
+                  <div className="iceberg-main">
+                    {/* Верхняя часть (над водой) */}
+                    <div className="iceberg-top-section">
+                      <div className="iceberg-top-content">
                         <h3 className="text-3xl md:text-4xl font-bold text-slate-800">
                           указанный опыт
                         </h3>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Невидимая часть айсберга (под водой) */}
-                  <div className="iceberg-bottom">
-                    <div className="iceberg-bottom-content">
-                      <h2 className="text-4xl md:text-5xl font-bold text-slate-200 mb-8 text-center">
-                        давайте пообщаемся
-                      </h2>
-                      <div className="flex justify-center">
-                        <Button
-                          type="default"
-                          size="large"
-                          icon={<ArrowLeftOutlined />}
-                          onClick={handleReturn}
-                          className="bg-white/20 hover:bg-white/30 text-white border-white/40 h-12 px-8 text-lg font-semibold backdrop-blur-sm"
-                        >
-                          Вернуться
-                        </Button>
+                    {/* Нижняя часть (под водой) */}
+                    <div className="iceberg-bottom-section">
+                      <div className="iceberg-bottom-content">
+                        <h2 className="text-4xl md:text-5xl font-bold text-slate-200 mb-8 text-center">
+                          давайте пообщаемся
+                        </h2>
+                        <div className="flex justify-center">
+                          <Button
+                            type="default"
+                            size="large"
+                            icon={<ArrowLeftOutlined />}
+                            onClick={handleReturn}
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/40 h-12 px-8 text-lg font-semibold backdrop-blur-sm"
+                          >
+                            Вернуться
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="iceberg-bottom-layer-1" />
-                  <div className="iceberg-bottom-layer-2" />
-                  <div className="iceberg-bottom-layer-3" />
                 </div>
               </div>
             </div>,
@@ -131,169 +141,104 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
           width: 100%;
           max-width: 900px;
           margin: 0 auto;
-          height: 600px;
-        }
-
-        /* Видимая часть айсберга (над водой) */
-        .iceberg-top {
-          position: absolute;
-          top: 50px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 600px;
-          height: 250px;
-          background: linear-gradient(135deg, rgba(241, 245, 249, 0.98) 0%, rgba(226, 232, 240, 0.98) 50%, rgba(203, 213, 225, 0.98) 100%);
-          clip-path: polygon(
-            30% 0%,
-            70% 0%,
-            100% 30%,
-            100% 70%,
-            85% 100%,
-            15% 100%,
-            0% 70%,
-            0% 30%
-          );
-          border: 4px solid rgba(255, 255, 255, 0.4);
-          box-shadow: 
-            0 25px 70px rgba(0, 0, 0, 0.4),
-            inset 0 0 40px rgba(255, 255, 255, 0.3),
-            inset 0 -15px 30px rgba(148, 163, 184, 0.15);
-          z-index: 25;
-          overflow: hidden;
-        }
-
-        .iceberg-content {
-          height: 100%;
-          width: 100%;
+          height: 800px;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 20px;
         }
 
-        /* Основная невидимая часть айсберга (под водой) */
-        .iceberg-bottom {
-          position: absolute;
-          top: 280px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 900px;
-          height: 400px;
-          background: linear-gradient(135deg, rgba(148, 163, 184, 0.6) 0%, rgba(100, 116, 139, 0.6) 50%, rgba(71, 85, 105, 0.6) 100%);
+        /* Единая фигура айсберга */
+        .iceberg-main {
+          position: relative;
+          width: 600px;
+          height: 700px;
           clip-path: polygon(
-            20% 0%,
-            80% 0%,
-            95% 20%,
-            100% 40%,
-            98% 60%,
-            95% 80%,
-            90% 100%,
-            10% 100%,
-            5% 80%,
-            2% 60%,
-            0% 40%,
-            5% 20%
+            35% 0%,
+            65% 0%,
+            78% 8%,
+            88% 20%,
+            95% 35%,
+            98% 50%,
+            96% 65%,
+            90% 78%,
+            82% 88%,
+            72% 95%,
+            60% 98%,
+            40% 98%,
+            28% 95%,
+            18% 88%,
+            10% 78%,
+            4% 65%,
+            2% 50%,
+            5% 35%,
+            12% 20%,
+            22% 8%
           );
-          border: 3px solid rgba(255, 255, 255, 0.2);
+          background: linear-gradient(to bottom, 
+            rgba(241, 245, 249, 0.98) 0%,
+            rgba(241, 245, 249, 0.98) 13%,
+            rgba(226, 232, 240, 0.98) 13%,
+            rgba(226, 232, 240, 0.98) 15%,
+            rgba(148, 163, 184, 0.7) 15%,
+            rgba(148, 163, 184, 0.7) 50%,
+            rgba(100, 116, 139, 0.6) 50%,
+            rgba(100, 116, 139, 0.6) 70%,
+            rgba(71, 85, 105, 0.5) 70%,
+            rgba(71, 85, 105, 0.5) 100%
+          );
+          border: 4px solid rgba(255, 255, 255, 0.3);
           box-shadow: 
-            0 20px 60px rgba(0, 0, 0, 0.3),
-            inset 0 0 30px rgba(255, 255, 255, 0.1);
-          z-index: 24;
+            0 25px 70px rgba(0, 0, 0, 0.4),
+            inset 0 0 40px rgba(255, 255, 255, 0.2);
           overflow: hidden;
+          z-index: 25;
+        }
+
+        /* Верхняя секция (над водой) */
+        .iceberg-top-section {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 15%;
+          background: linear-gradient(135deg, rgba(241, 245, 249, 0.98) 0%, rgba(226, 232, 240, 0.98) 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 12px;
+          clip-path: polygon(
+            0% 0%,
+            100% 0%,
+            100% 100%,
+            0% 100%
+          );
+        }
+
+        .iceberg-top-content {
+          text-align: center;
+        }
+
+        /* Нижняя секция (под водой) */
+        .iceberg-bottom-section {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 85%;
+          background: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 40px;
         }
 
         .iceberg-bottom-content {
-          height: 100%;
-          width: 100%;
-          padding: 40px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-        }
-
-        /* Дополнительные слои для глубины (под водой) - слой 1 */
-        .iceberg-bottom-layer-1 {
-          position: absolute;
-          top: 620px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 1100px;
-          height: 350px;
-          background: linear-gradient(135deg, rgba(100, 116, 139, 0.3) 0%, rgba(71, 85, 105, 0.3) 100%);
-          clip-path: polygon(
-            18% 0%,
-            82% 0%,
-            96% 18%,
-            100% 38%,
-            97% 58%,
-            94% 78%,
-            88% 98%,
-            12% 98%,
-            6% 78%,
-            3% 58%,
-            0% 38%,
-            4% 18%
-          );
-          filter: blur(10px);
-          opacity: 0.5;
-          z-index: 20;
-        }
-
-        /* Дополнительные слои для глубины (под водой) - слой 2 */
-        .iceberg-bottom-layer-2 {
-          position: absolute;
-          top: 680px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 1300px;
-          height: 400px;
-          background: linear-gradient(135deg, rgba(71, 85, 105, 0.25) 0%, rgba(51, 65, 85, 0.25) 100%);
-          clip-path: polygon(
-            15% 0%,
-            85% 0%,
-            97% 15%,
-            100% 35%,
-            97% 55%,
-            94% 75%,
-            90% 95%,
-            10% 95%,
-            6% 75%,
-            3% 55%,
-            0% 35%,
-            3% 15%
-          );
-          filter: blur(14px);
-          opacity: 0.35;
-          z-index: 19;
-        }
-
-        /* Дополнительные слои для глубины (под водой) - слой 3 */
-        .iceberg-bottom-layer-3 {
-          position: absolute;
-          top: 720px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 1500px;
-          height: 450px;
-          background: linear-gradient(135deg, rgba(51, 65, 85, 0.2) 0%, rgba(30, 41, 59, 0.2) 100%);
-          clip-path: polygon(
-            12% 0%,
-            88% 0%,
-            96% 12%,
-            100% 32%,
-            96% 52%,
-            93% 72%,
-            88% 92%,
-            12% 92%,
-            7% 72%,
-            4% 52%,
-            0% 32%,
-            4% 12%
-          );
-          filter: blur(18px);
-          opacity: 0.2;
-          z-index: 18;
+          height: 100%;
+          width: 100%;
         }
 
         @media (max-width: 768px) {
@@ -301,39 +246,14 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
             height: 700px;
           }
 
-          .iceberg-top {
+          .iceberg-main {
             width: 85%;
-            height: 180px;
-            top: 60px;
-          }
-
-          .iceberg-bottom {
-            width: 100%;
-            height: 320px;
-            top: 220px;
+            height: 600px;
           }
 
           .iceberg-bottom-content h2 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
-          }
-
-          .iceberg-bottom-layer-1 {
-            width: 120%;
-            height: 280px;
-            top: 480px;
-          }
-
-          .iceberg-bottom-layer-2 {
-            width: 140%;
-            height: 320px;
-            top: 540px;
-          }
-
-          .iceberg-bottom-layer-3 {
-            width: 160%;
-            height: 360px;
-            top: 580px;
           }
         }
       `}</style>
