@@ -7,6 +7,18 @@ import Contact from '../components/Contact'
 const Home = () => {
   return (
     <div>
+      {/* Бегущая строка на весь экран */}
+      <div className="w-full overflow-hidden bg-gradient-to-r from-primary-600/20 via-primary-500/20 to-primary-600/20 border-y-2 border-primary-500/30">
+        <div className="flex animate-scroll">
+          <div className="flex whitespace-nowrap text-3xl md:text-4xl lg:text-5xl font-bold text-primary-300 py-6 md:py-8">
+            <span className="mx-8">Весь опыт релевантен, высшее образование, трудовая книжка на руках</span>
+            <span className="mx-8">Весь опыт релевантен, высшее образование, трудовая книжка на руках</span>
+            <span className="mx-8">Весь опыт релевантен, высшее образование, трудовая книжка на руках</span>
+            <span className="mx-8">Весь опыт релевантен, высшее образование, трудовая книжка на руках</span>
+          </div>
+        </div>
+      </div>
+      
       <Hero />
       <ExperienceTimeline />
       <TechStack />

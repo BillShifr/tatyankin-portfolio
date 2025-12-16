@@ -391,24 +391,34 @@ const ExperienceTimeline = () => {
           Опыт работы
         </h2>
         <div className="flex justify-center mb-8">
-          <div className="relative">
+          <div className="relative w-full max-w-2xl">
             <Segmented
               value={isRealMode ? 'real' : 'expected'}
               onChange={(value) => setIsRealMode(value === 'real')}
               options={[
                 {
                   label: (
-                    <span className="text-xl md:text-2xl font-bold px-6 py-3 block">
-                      Ожидание
-                    </span>
+                    <div className="text-center py-2">
+                      <div className="text-xl md:text-2xl font-bold">
+                        Ожидание
+                      </div>
+                      <div className="text-xs text-slate-400 mt-1">
+                        что хотят видеть
+                      </div>
+                    </div>
                   ),
                   value: 'expected',
                 },
                 {
                   label: (
-                    <span className="text-xl md:text-2xl font-bold px-6 py-3 block">
-                      Действительность
-                    </span>
+                    <div className="text-center py-2">
+                      <div className="text-xl md:text-2xl font-bold">
+                        Действительность
+                      </div>
+                      <div className="text-xs text-slate-400 mt-1">
+                        тоже самое
+                      </div>
+                    </div>
                   ),
                   value: 'real',
                 },
@@ -418,7 +428,7 @@ const ExperienceTimeline = () => {
               className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 border-2 border-slate-600 rounded-2xl shadow-2xl"
               style={{
                 minWidth: '500px',
-                height: '70px',
+                height: '80px',
                 fontSize: '20px',
                 padding: '4px',
               }}
