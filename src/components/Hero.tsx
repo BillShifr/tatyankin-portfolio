@@ -1,6 +1,7 @@
 import { Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { useState, useEffect } from 'react'
+import ConfettiReveal from './ConfettiReveal'
 
 const Hero = () => {
   const [showLenny, setShowLenny] = useState(false)
@@ -47,6 +48,8 @@ const Hero = () => {
         >
           Погрузиться в опыт
         </Button>
+        
+        <ConfettiReveal />
       </div>
     </section>
   )
