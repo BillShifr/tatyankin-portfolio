@@ -29,7 +29,7 @@ const principles = [
     title: 'Образование и развитие',
     icon: <BookOutlined className="text-4xl text-purple-500" />,
     content:
-      'Выпускник ЮФМЛ. Активно делюсь опытом на Habr и в личных блогах. Верю, что лучший способ учиться — это учить других. Менторство и обмен знаниями — часть моей работы.',
+      'Выпускник лицея ЮФМЛ. Магистр Югорского государственного университета (2020, 2022). Активно делюсь опытом на Habr и в личных блогах. Верю, что лучший способ учиться — это учить других. Менторство и обмен знаниями — часть моей работы.',
   },
 ]
 
@@ -66,7 +66,10 @@ const Principles = () => {
       <div className="mt-16 text-center">
         <div className="inline-block p-6 bg-slate-800 rounded-lg border border-slate-700">
           <p className="text-slate-300 mb-2">
-            <strong className="text-primary-400">Образование:</strong> ЮФМЛ
+            <strong className="text-primary-400">Образование:</strong> Лицей ЮФМЛ, Югорский государственный университет - Ханты-Мансийск
+          </p>
+          <p className="text-slate-300 mb-2">
+            <strong className="text-primary-400">Степень:</strong> Магистр (2020, 2022)
           </p>
           <p className="text-slate-300">
             <strong className="text-primary-400">Публикации:</strong> Habr

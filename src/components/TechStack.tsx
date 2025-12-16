@@ -280,6 +280,18 @@ const techStack: TechItem[] = [
     color: 'purple',
     tooltip: 'Сверхбыстрый компилятор TypeScript/JavaScript написанный на Rust.',
   },
+  {
+    name: 'Webpack',
+    category: 'Tools',
+    color: 'processing',
+    tooltip: 'Опыт настройки кастомных конфигураций для оптимизации бандла. Использовал в проектах XDSOFT и ЮТЭК.',
+  },
+  {
+    name: 'Figma',
+    category: 'Tools',
+    color: 'purple',
+    tooltip: 'Дизайн и прототипирование интерфейсов. Работа с дизайн-макетами в проектах XDSOFT и ЮТЭК.',
+  },
   
   // Backend & CMS
   {
@@ -305,6 +317,18 @@ const techStack: TechItem[] = [
     category: 'Backend',
     color: 'blue',
     tooltip: 'Аналитическая БД для хранения больших объемов данных и метрик.',
+  },
+  {
+    name: 'Express',
+    category: 'Backend',
+    color: 'default',
+    tooltip: 'Веб-фреймворк для Node.js. Использовал для поднятия сервера в проекте ЮТЭК (Node.js + Express + PostgreSQL).',
+  },
+  {
+    name: 'PostgreSQL',
+    category: 'Backend',
+    color: 'geekblue',
+    tooltip: 'Реляционная база данных. Использовал в связке с Node.js и Express в проекте ЮТЭК.',
   },
   
   // DevOps
