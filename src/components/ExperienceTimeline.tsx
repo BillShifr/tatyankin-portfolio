@@ -2,6 +2,7 @@ import { Timeline, Card, Collapse, Button, Modal, Segmented } from 'antd'
 import { useState } from 'react'
 import type { TimelineItemProps } from 'antd'
 import CompanyLogo from './CompanyLogo'
+import ContactMap from './ContactMap'
 
 interface ExperienceItem {
   title: string
@@ -386,6 +387,7 @@ const ExperienceTimeline = () => {
 
   return (
     <section id="experience" className="py-20 px-4 max-w-5xl mx-auto">
+      <div className="bg-slate-900/50 rounded-3xl p-8 border border-slate-700/50">
       <div className="flex flex-col items-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-slate-100">
           Опыт работы
@@ -437,6 +439,9 @@ const ExperienceTimeline = () => {
         </div>
       </div>
       <Timeline mode="left" items={timelineItems} />
+      
+      <ContactMap />
+    </div>
     </section>
   )
 }

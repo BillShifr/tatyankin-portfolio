@@ -1,11 +1,27 @@
 import { Outlet } from 'react-router-dom'
 import { FloatButton } from 'antd'
 import { ArrowUpOutlined } from '@ant-design/icons'
+import { useState, useEffect } from 'react'
 
 const Layout = () => {
+  const [isZoomed, setIsZoomed] = useState(false)
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  useEffect(() => {
+    const handleContactMapOpen = () => setIsZoomed(true)
+    const handleContactMapClose = () => setIsZoomed(false)
+
+    window.addEventListener('contactMap:open', handleContactMapOpen)
+    window.addEventListener('contactMap:close', handleContactMapClose)
+
+    return () => {
+      window.removeEventListener('contactMap:open', handleContactMapOpen)
+      window.removeEventListener('contactMap:close', handleContactMapClose)
+    }
+  }, [])
 
   // Фоновые текстовые элементы для всего сайта
   const backgroundPhrases = [
@@ -42,7 +58,14 @@ const Layout = () => {
   ]
 
   return (
-    <div className="min-h-screen relative">
+    <div 
+      className={`min-h-screen relative transition-all duration-1000 origin-center ${
+        isZoomed ? 'scale-0 opacity-0 pointer-events-none' : ''
+      }`}
+      style={{
+        transformOrigin: 'center center',
+      }}
+    >
       {/* Фоновые текстовые элементы для всего сайта */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {backgroundPhrases.map((phrase, index) => (
