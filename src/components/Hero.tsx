@@ -27,17 +27,17 @@ const Hero = () => {
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div className="mb-2">
           {showLenny && (
-            <div className="text-6xl mb-4 animate-bounce">( ͡° ͜ʖ ͡°)</div>
+            <div className="text-xl md:text-2xl mb-4 text-slate-300 italic max-w-3xl mx-auto font-medium">
+            «Если реализацию сложно объяснить — идея плоха. Если реализацию легко объяснить — идея, возможно, хороша»
+            </div>
           )}
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
-          Frontend Архитектор
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
+          Lead Frontend Developer / Product Creator & Problem Solver &<br />
+          <span className="bg-gradient-to-r from-primary-300 to-cyan-400 bg-clip-text text-transparent">Ментор</span>
         </h1>
-        <h2 className="text-3xl md:text-5xl font-semibold mb-8 text-slate-300">
-          & Ментор
-        </h2>
-        <p className="text-xl md:text-2xl text-slate-400 mb-12 max-w-2xl mx-auto">
-          Создаю масштабируемые решения, выстраиваю процессы и делюсь опытом
+        <p className="text-xl md:text-2xl text-slate-400 mb-12 max-w-2xl mx-auto text-center">
+          Строю frontend, который масштабируется. Учу команду, которая успевает.
         </p>
         <Button
           type="primary"
