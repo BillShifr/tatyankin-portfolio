@@ -425,9 +425,6 @@ const ExperienceTimeline = () => {
       const startRect = startMarkerRef.current.getBoundingClientRect()
       const endRect = endMarkerRef.current.getBoundingClientRect()
 
-      // Показываем переключатель, если:
-      // 1. Начало секции еще не прошло верх viewport
-      // 2. Конец секции еще не достиг верха viewport
       const shouldShow = startRect.top <= 100 && endRect.top > 100
 
       setShowSegmented(shouldShow)
