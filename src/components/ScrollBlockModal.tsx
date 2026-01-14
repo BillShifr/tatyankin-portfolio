@@ -28,7 +28,6 @@ const parseMarkdown = (text: string, keyPrefix: string) => {
     lastIndex = regex.lastIndex
   }
 
-  // Добавляем оставшийся текст
   if (lastIndex < text.length) {
     parts.push(text.substring(lastIndex))
   }
