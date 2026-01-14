@@ -207,6 +207,26 @@ const techStack: TechItem[] = [
     tooltip: 'Мощная CSS-in-JS библиотека для стилизации компонентов.',
   },
   
+  // Animation & 3D
+  {
+    name: 'Framer Motion',
+    category: 'Frontend',
+    color: 'purple',
+    tooltip: 'Библиотека для создания плавных анимаций в React. Использовал для анимаций в покер-платформе (раздача карт, движение фишек, таймеры).',
+  },
+  {
+    name: 'GSAP',
+    category: 'Frontend',
+    color: 'green',
+    tooltip: 'Мощная библиотека для создания высокопроизводительных анимаций. Использовал для сложных анимаций в покер-платформе.',
+  },
+  {
+    name: 'Three.js',
+    category: 'Frontend',
+    color: 'cyan',
+    tooltip: '3D-библиотека для WebGL. Использовал для 3D-визуализации в покер-платформе (раздача карт с физикой полета, эффекты победителя).',
+  },
+  
   // Utilities
   {
     name: 'Lodash',

@@ -1,5 +1,6 @@
 import Hero from '../components/Hero'
 import ExperienceTimeline from '../components/ExperienceTimeline'
+import NotableAchievements from '../components/NotableAchievements'
 import Education from '../components/Education'
 import TechStack from '../components/TechStack'
 import PersonalLinks from '../components/PersonalLinks'
@@ -24,6 +25,7 @@ const Home = () => {
       
       <Hero />
       <ExperienceTimeline />
+      <NotableAchievements />
       <Education />
       <TechStack />
       <PersonalLinks />
