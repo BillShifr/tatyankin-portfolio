@@ -51,7 +51,6 @@ body {
   }
 }
 
-/* Стилизация Segmented для переключателя опыта */
 .ant-segmented {
   background: rgba(30, 41, 59, 0.9) !important;
   border: 2px solid rgba(148, 163, 184, 0.3) !important;
