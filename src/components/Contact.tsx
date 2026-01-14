@@ -1,6 +1,5 @@
-import { Card, Form, Input, Button, message } from 'antd'
-import { MailOutlined, SendOutlined, GithubOutlined, BookOutlined } from '@ant-design/icons'
-import type { FormProps } from 'antd'
+import { Card } from 'antd'
+import { MailOutlined, GithubOutlined, PhoneOutlined } from '@ant-design/icons'
 
 // SVG иконка Telegram в синем стиле
 const TelegramIcon = ({ className }: { className?: string }) => (
@@ -14,21 +13,7 @@ const TelegramIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-interface ContactFormData {
-  name: string
-  email: string
-  message: string
-}
-
 const Contact = () => {
-  const [form] = Form.useForm()
-
-  const onFinish: FormProps<ContactFormData>['onFinish'] = (values) => {
-    // В реальном проекте здесь был бы API вызов
-    console.log('Form data:', values)
-    message.success('Спасибо! Сообщение отправлено (в реальном проекте здесь был бы API)')
-    form.resetFields()
-  }
 
   return (
     <section id="contact" className="py-20 px-4 max-w-4xl mx-auto">
@@ -36,110 +21,34 @@ const Contact = () => {
         Связаться со мной
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        {/* Контактная форма */}
-        <Card className="border-slate-700">
-          <Form
-            form={form}
-            onFinish={onFinish}
-            layout="vertical"
-            className="contact-form"
+      <Card className="border-slate-700 bg-slate-800/50">
+
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+          <a
+            href="mailto:vladislavtatyankin@mail.ru"
+            className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-all duration-300 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/20"
           >
-            <Form.Item
-              name="name"
-              label={<span className="text-slate-300">Имя</span>}
-              rules={[{ required: true, message: 'Имя обязательно' }]}
-            >
-              <Input
-                placeholder="Ваше имя"
-                className="bg-slate-800 border-slate-600 text-slate-100 placeholder:text-slate-500"
-              />
-            </Form.Item>
-
-            <Form.Item
-              name="email"
-              label={<span className="text-slate-300">Email</span>}
-              rules={[
-                { required: true, message: 'Email обязателен' },
-                { type: 'email', message: 'Некорректный email' },
-              ]}
-            >
-              <Input
-                type="email"
-                placeholder="your.email@example.com"
-                className="bg-slate-800 border-slate-600 text-slate-100 placeholder:text-slate-500"
-              />
-            </Form.Item>
-
-            <Form.Item
-              name="message"
-              label={<span className="text-slate-300">Сообщение</span>}
-              rules={[{ required: true, message: 'Сообщение обязательно' }]}
-            >
-              <Input.TextArea
-                rows={6}
-                placeholder="Ваше сообщение..."
-                className="bg-slate-800 border-slate-600 text-slate-100 placeholder:text-slate-500"
-              />
-            </Form.Item>
-
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                icon={<SendOutlined />}
-                size="large"
-                className="w-full bg-primary-600 hover:bg-primary-700"
-              >
-                Отправить
-              </Button>
-            </Form.Item>
-          </Form>
-        </Card>
-
-        {/* Контактные ссылки */}
-        <Card className="border-slate-700">
-          <h3 className="text-2xl font-semibold text-slate-100 mb-6">
-            Быстрые ссылки
-          </h3>
-          <div className="space-y-4">
-            <a
-              href="mailto:your.email@example.com"
-              className="flex items-center gap-3 p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white"
-            >
-              <MailOutlined className="text-2xl text-primary-400" />
-              <span>Email</span>
-            </a>
-            <a
-              href="https://t.me/your_telegram"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white"
-            >
-              <TelegramIcon className="text-2xl text-primary-400 w-6 h-6" />
-              <span>Telegram</span>
-            </a>
-            <a
-              href="https://habr.com/users/your_username"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white"
-            >
-              <BookOutlined className="text-2xl text-primary-400" />
-              <span>Habr</span>
-            </a>
-            <a
-              href="https://github.com/your_username"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white"
-            >
-              <GithubOutlined className="text-2xl text-primary-400" />
-              <span>GitHub</span>
-            </a>
-          </div>
-        </Card>
-      </div>
+            <MailOutlined className="text-4xl text-primary-400" />
+            <span className="font-medium">Email</span>
+          </a>
+          <a
+            href="https://t.me/VladislavTatyankin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-all duration-300 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/20"
+          >
+            <TelegramIcon className="text-4xl text-primary-400 w-10 h-10" />
+            <span className="font-medium">Telegram</span>
+          </a>
+          <a
+            href="tel:+79824108293"
+            className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-all duration-300 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/20"
+          >
+            <PhoneOutlined className="text-4xl text-primary-400" />
+            <span className="font-medium">+7 (982) 410-82-93</span>
+          </a>
+        </div>
+      </Card>
     </section>
   )
 }

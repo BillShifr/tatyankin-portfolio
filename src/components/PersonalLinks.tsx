@@ -1,6 +1,6 @@
 import { Card, Modal, Button } from 'antd'
 import { useState } from 'react'
-import { GithubOutlined, FileTextOutlined, BookOutlined, MailOutlined } from '@ant-design/icons'
+import { GithubOutlined, FileTextOutlined, BookOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons'
 
 // SVG иконки в синем стиле
 const TelegramIcon = ({ className }: { className?: string }) => (
@@ -158,40 +158,29 @@ const PersonalLinks = () => {
             <h4 className="text-sm font-semibold text-slate-400 mb-4 text-center uppercase tracking-wider">
               Способы связи
             </h4>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               <a
-                href="mailto:your.email@example.com"
+                href="mailto:vladislavtatyankin@mail.ru"
                 className="flex items-center justify-center gap-2 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
               >
-                <MailOutlined className="text-lg text-primary-400" />
+                <MailOutlined className="text-xl text-primary-400" />
                 <span className="text-sm">Email</span>
               </a>
               <a
-                href="https://t.me/your_telegram"
+                href="https://t.me/VladislavTatyankin"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
               >
-                <TelegramIcon className="text-lg text-primary-400 w-5 h-5" />
+                <TelegramIcon className="text-xl text-primary-400 w-6 h-6" />
                 <span className="text-sm">Telegram</span>
               </a>
               <a
-                href="https://habr.com/users/your_username"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="tel:+79824108293"
                 className="flex items-center justify-center gap-2 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
               >
-                <BookOutlined className="text-lg text-primary-400" />
-                <span className="text-sm">Habr</span>
-              </a>
-              <a
-                href="https://github.com/your_username"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
-              >
-                <GithubOutlined className="text-lg text-primary-400" />
-                <span className="text-sm">GitHub</span>
+                <PhoneOutlined className="text-xl text-primary-400" />
+                <span className="text-sm">Телефон</span>
               </a>
             </div>
           </div>
