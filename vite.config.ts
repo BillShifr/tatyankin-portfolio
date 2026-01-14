@@ -23,9 +23,9 @@ export default defineConfig(({ command }) => ({
       },
     },
   ],
-  // Для локальной разработки используем '/', для GitHub Pages '/tatyankin-portfolio/'
-  // command === 'build' означает production сборку
-  base: command === 'build' ? '/tatyankin-portfolio/' : '/',
+  // Для custom domain используем '/', для GitHub Pages без custom domain '/tatyankin-portfolio/'
+  // Если используете custom domain, всегда используйте '/'
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

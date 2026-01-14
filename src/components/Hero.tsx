@@ -17,7 +17,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="flex items-center justify-center relative overflow-hidden py-2 sm:py-4 md:py-6 lg:py-8" style={{ minHeight: '100dvh' }}>
+    <section className="flex items-center justify-center relative overflow-hidden py-2 sm:py-4 md:py-6 lg:py-8" >
       {/* Анимированный фон */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-primary-500 rounded-full blur-3xl animate-pulse" />
