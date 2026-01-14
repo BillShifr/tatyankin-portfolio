@@ -16,9 +16,13 @@ interface ConfettiParticle {
 const ConfettiReveal = () => {
   const [isRevealed, setIsRevealed] = useState(false)
   const [showConfetti, setShowConfetti] = useState(false)
+  const [buttonClicked, setButtonClicked] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<ConfettiParticle[]>([])
   const animationFrameRef = useRef<number>()
+  const barrierRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const lockedScrollYRef = useRef<number>(0)
 
   const colors = [
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
@@ -126,7 +130,136 @@ const ConfettiReveal = () => {
     }
   }, [showConfetti])
 
+  useEffect(() => {
+    // Если кнопка уже была нажата, не блокируем скролл
+    if (buttonClicked) return
+
+    let isLocked = false
+
+    const getButtonPosition = () => {
+      if (!buttonRef.current) return null
+      const rect = buttonRef.current.getBoundingClientRect()
+      const scrollY = window.scrollY
+      // Позиция скролла, при которой кнопка будет в центре экрана
+      return scrollY + rect.top - window.innerHeight / 2 + rect.height / 2
+    }
+
+    const updateLockPosition = () => {
+      if (!barrierRef.current || !buttonRef.current) return
+
+      const barrier = barrierRef.current
+      const rect = barrier.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+
+      // Когда барьер достигает верхней части экрана, фиксируем позицию к кнопке
+      if (rect.top <= windowHeight * 0.9 && !isLocked) {
+        isLocked = true
+        const buttonPos = getButtonPosition()
+        if (buttonPos !== null) {
+          lockedScrollYRef.current = buttonPos
+          // Сразу якорнимся к кнопке без анимации для мгновенной фиксации
+          window.scrollTo(0, buttonPos)
+        }
+      }
+    }
+
+    const handleScroll = () => {
+      if (buttonClicked || !barrierRef.current || !buttonRef.current) return
+
+      updateLockPosition()
+
+      // Если позиция заблокирована, разрешаем скролл вверх, но блокируем вниз
+      if (isLocked) {
+        const currentScrollY = window.scrollY
+        // Разрешаем скролл вверх (уменьшение scrollY), но блокируем скролл вниз
+        if (currentScrollY > lockedScrollYRef.current) {
+          // Скроллим вниз - блокируем и возвращаем на зафиксированную позицию
+          window.scrollTo(0, lockedScrollYRef.current)
+        } else {
+          // Скроллим вверх - разрешаем, но обновляем минимальную зафиксированную позицию
+          if (currentScrollY < lockedScrollYRef.current - 100) {
+            // Если скроллили достаточно вверх, разблокируем
+            isLocked = false
+            lockedScrollYRef.current = 0
+          }
+        }
+      }
+    }
+
+    const handleWheel = (e: WheelEvent) => {
+      if (buttonClicked || !barrierRef.current) return
+      
+      updateLockPosition()
+
+      if (isLocked && e.deltaY > 0) {
+        // Блокируем скролл вниз
+        e.preventDefault()
+        e.stopPropagation()
+        return false
+      }
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (buttonClicked || !barrierRef.current) return
+      
+      updateLockPosition()
+
+      if (isLocked) {
+        const touch = e.touches[0]
+        if (touch) {
+          // Блокируем скролл вниз на мобильных
+          const touchY = touch.clientY
+          const previousY = (e as any).previousTouchY || touchY
+          if (touchY < previousY) {
+            e.preventDefault()
+            e.stopPropagation()
+            return false
+          }
+          (e as any).previousTouchY = touchY
+        }
+      }
+    }
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (buttonClicked || !barrierRef.current) return
+      
+      const touch = e.touches[0]
+      if (touch) {
+        (e as any).previousTouchY = touch.clientY
+      }
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (buttonClicked || !barrierRef.current) return
+      
+      updateLockPosition()
+
+      if (isLocked) {
+        if (e.key === 'ArrowDown' || e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey)) {
+          e.preventDefault()
+          e.stopPropagation()
+          return false
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('wheel', handleWheel, { passive: false })
+    window.addEventListener('touchstart', handleTouchStart, { passive: true })
+    window.addEventListener('touchmove', handleTouchMove, { passive: false })
+    document.addEventListener('keydown', handleKeyDown, { passive: false })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('wheel', handleWheel)
+      window.removeEventListener('touchstart', handleTouchStart)
+      window.removeEventListener('touchmove', handleTouchMove)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [buttonClicked])
+
   const handleReveal = () => {
+    setButtonClicked(true) // Помечаем, что кнопка была нажата - блокировка больше не нужна
     setIsRevealed(true)
     setShowConfetti(true)
   }
@@ -166,6 +299,7 @@ const ConfettiReveal = () => {
               узнать почему я не могу устроиться на работу
             </p>
             <Button
+              ref={buttonRef}
               type="primary"
               size="large"
               icon={<QuestionCircleOutlined />}
@@ -210,7 +344,7 @@ const ConfettiReveal = () => {
                   animation: 'glow 2s ease-in-out infinite alternate',
                 }}
               >
-                потому что мою резюме просто скпиют
+                потому что мою резюме просто скипают и не уделяют должного времени
               </h2>
             </div>
             <Button
