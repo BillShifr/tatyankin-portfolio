@@ -187,7 +187,7 @@ const Principles = () => {
   }
 
   return (
-    <section id="principles" className="py-12 px-4 max-w-6xl mx-auto relative">
+    <section id="principles" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 max-w-6xl mx-auto relative">
       {/* Canvas для конфетти */}
       {showConfetti && (
         <canvas
@@ -198,18 +198,18 @@ const Principles = () => {
 
       {/* Overlay с надписью "это правда!" */}
       {showTruth && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none">
-          <div className="text-6xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-pink-400 via-purple-400 to-pink-300 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)] animate-bounce">
+        <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none px-4">
+          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-pink-400 via-purple-400 to-pink-300 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)] animate-bounce">
             это правда!
           </div>
         </div>
       )}
 
-      <div className="flex flex-col items-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-slate-100">
+      <div className="flex flex-col items-center mb-8 sm:mb-10 md:mb-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 text-slate-100 px-2">
           Принципы и подходы
         </h2>
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6 sm:mb-8 w-full px-2">
           <div className="relative w-full max-w-2xl">
             <Segmented
               value={isChecked ? 'yes' : 'no'}
@@ -217,8 +217,8 @@ const Principles = () => {
               options={[
                 {
                   label: (
-                    <div className="text-center py-2">
-                      <div className="text-xl md:text-2xl font-bold">
+                    <div className="text-center py-1 sm:py-2">
+                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-tight">
                         Ожидание
                       </div>
                     </div>
@@ -227,8 +227,8 @@ const Principles = () => {
                 },
                 {
                   label: (
-                    <div className="text-center py-2">
-                      <div className="text-xl md:text-2xl font-bold">
+                    <div className="text-center py-1 sm:py-2">
+                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-tight">
                         Действительность
                       </div>
                     </div>
@@ -238,33 +238,34 @@ const Principles = () => {
               ]}
               size="large"
               block
-              className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 border-2 border-slate-600 rounded-2xl shadow-2xl"
+              className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 border-2 border-slate-600 rounded-xl sm:rounded-2xl shadow-2xl"
               style={{
-                minWidth: '500px',
-                height: '80px',
-                fontSize: '20px',
-                padding: '4px',
+                height: 'auto',
+                minHeight: '60px',
+                padding: '2px',
               }}
             />
           </div>
         </div>
       </div>
 
-      <Row gutter={[24, 24]}>
+      <Row gutter={[16, 16]} className="sm:!mx-0">
         {principles.map((principle, index) => (
           <Col xs={24} sm={12} lg={6} key={index}>
             <Card
               className="h-full hover:shadow-xl transition-all duration-300 border-slate-700 hover:border-primary-500"
               title={
-                <div className="flex items-center gap-3">
-                  {principle.icon}
-                  <span className="text-slate-100 font-semibold">
+                <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                  <div className="text-2xl sm:text-3xl md:text-4xl">
+                    {principle.icon}
+                  </div>
+                  <span className="text-slate-100 font-semibold text-sm sm:text-base">
                     {principle.title}
                   </span>
                 </div>
               }
             >
-              <p className="text-slate-300 leading-relaxed">
+              <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
                 {principle.content}
               </p>
             </Card>

@@ -37,15 +37,15 @@ const companyLogos: Record<string, string | React.ReactElement> = {
   ),
 }
 
-const CompanyLogo = ({ company, size = 64, className = '' }: CompanyLogoProps) => {
+const CompanyLogo = ({ company, size = 48, className = '' }: CompanyLogoProps) => {
   const logo = companyLogos[company]
 
   if (!logo) {
     // Fallback на первую букву компании
     return (
       <div
-        className={`flex items-center justify-center bg-primary-500 rounded-full text-white font-bold ${className}`}
-        style={{ width: size, height: size }}
+        className={`flex items-center justify-center bg-primary-500 rounded-full text-white font-bold text-xs sm:text-sm ${className}`}
+        style={{ width: size, height: size, minWidth: size, minHeight: size }}
       >
         {company.charAt(0)}
       </div>

@@ -16,36 +16,36 @@ const TelegramIcon = ({ className }: { className?: string }) => (
 const Contact = () => {
 
   return (
-    <section id="contact" className="py-12 px-4 max-w-4xl mx-auto">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100">
+    <section id="contact" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 max-w-4xl mx-auto">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-slate-100 px-2">
         Связаться со мной
       </h2>
 
       <Card className="border-slate-700 bg-slate-800/50">
 
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+        <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 md:gap-6">
           <a
             href="mailto:vladislavtatyankin@mail.ru"
-            className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-all duration-300 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/20"
+            className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-all duration-300 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/20"
           >
-            <MailOutlined className="text-4xl text-primary-400" />
-            <span className="font-medium">Email</span>
+            <MailOutlined className="text-2xl sm:text-3xl md:text-4xl text-primary-400" />
+            <span className="font-medium text-sm sm:text-base">Email</span>
           </a>
           <a
             href="https://t.me/VladislavTatyankin"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-all duration-300 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/20"
+            className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-all duration-300 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/20"
           >
-            <TelegramIcon className="text-4xl text-primary-400 w-10 h-10" />
-            <span className="font-medium">Telegram</span>
+            <TelegramIcon className="text-2xl sm:text-3xl md:text-4xl text-primary-400 w-8 h-8 sm:w-10 sm:h-10" />
+            <span className="font-medium text-sm sm:text-base">Telegram</span>
           </a>
           <a
             href="tel:+79824108293"
-            className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-all duration-300 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/20"
+            className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-all duration-300 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/20"
           >
-            <PhoneOutlined className="text-4xl text-primary-400" />
-            <span className="font-medium">+7 (982) 410-82-93</span>
+            <PhoneOutlined className="text-2xl sm:text-3xl md:text-4xl text-primary-400" />
+            <span className="font-medium text-xs sm:text-sm md:text-base">+7 (982) 410-82-93</span>
           </a>
         </div>
       </Card>

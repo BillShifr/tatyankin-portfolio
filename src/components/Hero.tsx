@@ -17,26 +17,24 @@ const Hero = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden py-8">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden py-4 sm:py-6 md:py-8">
       {/* Анимированный фон */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-400 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-primary-500 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-primary-400 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <div className="mb-2">
-          {showLenny && (
-            <div className="text-xl md:text-2xl mb-4 text-slate-300 italic max-w-3xl mx-auto font-medium">
-            «Если реализацию сложно объяснить — идея плоха. Если реализацию легко объяснить — идея, возможно, хороша»
-            </div>
-          )}
-        </div>
-        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
-          Lead Frontend Developer / Product Creator & Problem Solver &<br />
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+        {showLenny && (
+          <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-3 sm:mb-4 md:mb-6 text-slate-300 italic max-w-3xl mx-auto font-medium px-2">
+          «Если реализацию сложно объяснить — идея плоха. Если реализацию легко объяснить — идея, возможно, хороша»
+          </div>
+        )}
+        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent px-2 leading-tight">
+          Lead Frontend Developer & Product Creator & Problem Solver &<br />
           <span className="bg-gradient-to-r from-primary-300 to-cyan-400 bg-clip-text text-transparent">Ментор</span>
         </h1>
-        <p className="text-xl md:text-2xl text-slate-400 mb-12 max-w-2xl mx-auto text-center">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-400 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto text-center px-2">
           Строю frontend, который масштабируется. Учу команду, которая успевает.
         </p>
         <Button
@@ -44,7 +42,7 @@ const Hero = () => {
           size="large"
           icon={<DownOutlined />}
           onClick={scrollToExperience}
-          className="bg-primary-600 hover:bg-primary-700 border-primary-600 hover:border-primary-700 h-14 px-8 text-lg"
+          className="bg-primary-600 hover:bg-primary-700 border-primary-600 hover:border-primary-700 h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg"
         >
           Погрузиться в опыт
         </Button>

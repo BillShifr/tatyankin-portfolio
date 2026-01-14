@@ -407,16 +407,16 @@ const TechStack = () => {
     : techStack
 
   return (
-    <section id="tech-stack" className="py-12 px-4 max-w-6xl mx-auto">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-slate-100">
+    <section id="tech-stack" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 max-w-6xl mx-auto">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-10 md:mb-12 text-slate-100 px-2">
         Стек технологий
       </h2>
 
       {/* Фильтры по категориям */}
-      <div className="flex flex-wrap justify-center gap-3 mb-8">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 px-2">
         <button
           onClick={() => setSelectedCategory(null)}
-          className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+          className={`px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 ${
             selectedCategory === null
               ? 'bg-gradient-to-r from-primary-600 to-primary-500 text-white shadow-lg shadow-primary-500/50 scale-105'
               : 'bg-slate-800/50 text-slate-300 hover:bg-slate-700/50 hover:text-white border border-slate-700 hover:border-primary-500/50'
@@ -432,7 +432,7 @@ const TechStack = () => {
                 selectedCategory === category ? null : category
               )
             }
-            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+            className={`px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 ${
               selectedCategory === category
                 ? 'bg-gradient-to-r from-primary-600 to-primary-500 text-white shadow-lg shadow-primary-500/50 scale-105'
                 : 'bg-slate-800/50 text-slate-300 hover:bg-slate-700/50 hover:text-white border border-slate-700 hover:border-primary-500/50'
@@ -444,12 +444,12 @@ const TechStack = () => {
       </div>
 
       {/* Облако тегов */}
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2">
         {filteredTech.map((tech) => (
           <Tooltip key={tech.name} title={tech.tooltip} placement="top">
             <Tag
               color={tech.color}
-              className="text-base px-4 py-2 cursor-pointer hover:scale-110 transition-transform"
+              className="text-xs sm:text-sm md:text-base px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 cursor-pointer hover:scale-110 transition-transform"
             >
               {tech.name}
             </Tag>
@@ -458,7 +458,7 @@ const TechStack = () => {
       </div>
 
       {/* Статистика */}
-      <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="mt-8 sm:mt-10 md:mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 px-2">
         {categories.map((category) => {
           const count = techStack.filter(
             (tech) => tech.category === category
@@ -466,12 +466,12 @@ const TechStack = () => {
           return (
             <div
               key={category}
-              className="text-center p-4 bg-slate-800 rounded-lg border border-slate-700"
+              className="text-center p-3 sm:p-4 bg-slate-800 rounded-lg border border-slate-700"
             >
-              <div className={`text-3xl font-bold ${categoryColors[category]}`}>
+              <div className={`text-2xl sm:text-3xl font-bold ${categoryColors[category]}`}>
                 {count}
               </div>
-              <div className="text-slate-400 text-sm mt-1">{category}</div>
+              <div className="text-slate-400 text-xs sm:text-sm mt-1">{category}</div>
             </div>
           )
         })}

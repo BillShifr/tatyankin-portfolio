@@ -55,19 +55,19 @@ const PersonalLinks = () => {
 
   return (
     <>
-      <section id="personal-links" className="py-12 px-4 max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100">
+      <section id="personal-links" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 max-w-6xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-slate-100 px-2">
           Дополнительные материалы
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {links.map((link) => (
             <Card
               key={link.id}
               className="relative overflow-hidden border-slate-700 hover:border-primary-500 transition-all duration-300 group cursor-pointer"
               style={{
                 backgroundColor: 'rgba(30, 41, 59, 0.8)',
-                minHeight: '300px',
+                minHeight: '250px',
               }}
               onClick={() => handleClick(link.id)}
             >
@@ -89,17 +89,19 @@ const PersonalLinks = () => {
               </div>
 
               {/* Контент */}
-              <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[300px] p-6">
-                <div className="text-primary-400 mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {link.icon}
+              <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[250px] p-4 sm:p-6">
+                <div className="text-primary-400 mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-4xl sm:text-5xl md:text-6xl">
+                    {link.icon}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-slate-100 mb-8 text-center">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-100 mb-6 sm:mb-8 text-center px-2">
                   {link.title}
                 </h3>
                 <Button
                   type="primary"
                   size="large"
-                  className="bg-primary-600 hover:bg-primary-500 border-primary-500 shadow-lg hover:shadow-primary-500/50 transition-all duration-300"
+                  className="bg-primary-600 hover:bg-primary-500 border-primary-500 shadow-lg hover:shadow-primary-500/50 transition-all duration-300 text-sm sm:text-base"
                   onClick={(e) => {
                     e.stopPropagation()
                     handleClick(link.id)
@@ -121,7 +123,8 @@ const PersonalLinks = () => {
         okText="Отличная идея!"
         cancelButtonProps={{ style: { display: 'none' } }}
         centered
-        width={500}
+        width="90%"
+        style={{ maxWidth: '500px' }}
         styles={{
           mask: {
             backgroundColor: 'rgba(15, 23, 42, 0.85)',
@@ -130,57 +133,57 @@ const PersonalLinks = () => {
           content: {
             backgroundColor: '#1e293b',
             border: '2px solid #3b82f6',
-            borderRadius: '16px',
+            borderRadius: '12px sm:rounded-2xl',
           },
           header: {
             backgroundColor: '#1e293b',
             borderBottom: '1px solid #334155',
-            padding: '24px',
+            padding: '16px sm:20px md:24px',
           },
           body: {
             backgroundColor: '#1e293b',
-            padding: '32px',
+            padding: '20px sm:24px md:32px',
           },
           footer: {
             backgroundColor: '#1e293b',
             borderTop: '1px solid #334155',
-            padding: '16px 24px',
+            padding: '12px sm:16px md:24px',
           },
         }}
       >
-        <div className="space-y-6">
-          <p className="text-lg text-slate-300 leading-relaxed text-center">
+        <div className="space-y-4 sm:space-y-6">
+          <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed text-center px-2">
             Предлагаю связаться и обсудить все лично :)
           </p>
           
           {/* Способы связи */}
-          <div className="pt-4 border-t border-slate-700">
-            <h4 className="text-sm font-semibold text-slate-400 mb-4 text-center uppercase tracking-wider">
+          <div className="pt-3 sm:pt-4 border-t border-slate-700">
+            <h4 className="text-xs sm:text-sm font-semibold text-slate-400 mb-3 sm:mb-4 text-center uppercase tracking-wider">
               Способы связи
             </h4>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
               <a
                 href="mailto:vladislavtatyankin@mail.ru"
-                className="flex items-center justify-center gap-2 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
+                className="flex items-center justify-center gap-1.5 sm:gap-2 p-2 sm:p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
               >
-                <MailOutlined className="text-xl text-primary-400" />
-                <span className="text-sm">Email</span>
+                <MailOutlined className="text-lg sm:text-xl text-primary-400" />
+                <span className="text-xs sm:text-sm">Email</span>
               </a>
               <a
                 href="https://t.me/VladislavTatyankin"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
+                className="flex items-center justify-center gap-1.5 sm:gap-2 p-2 sm:p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
               >
-                <TelegramIcon className="text-xl text-primary-400 w-6 h-6" />
-                <span className="text-sm">Telegram</span>
+                <TelegramIcon className="text-lg sm:text-xl text-primary-400 w-5 h-5 sm:w-6 sm:h-6" />
+                <span className="text-xs sm:text-sm">Telegram</span>
               </a>
               <a
                 href="tel:+79824108293"
-                className="flex items-center justify-center gap-2 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
+                className="flex items-center justify-center gap-1.5 sm:gap-2 p-2 sm:p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white border border-slate-700 hover:border-primary-500"
               >
-                <PhoneOutlined className="text-xl text-primary-400" />
-                <span className="text-sm">Телефон</span>
+                <PhoneOutlined className="text-lg sm:text-xl text-primary-400" />
+                <span className="text-xs sm:text-sm">Телефон</span>
               </a>
             </div>
           </div>

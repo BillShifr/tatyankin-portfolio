@@ -413,28 +413,28 @@ const ExperienceTimeline = () => {
   
   const timelineItems: TimelineItemProps[] = currentExperiences.map((exp, index) => ({
     dot: (
-      <div className="p-2">
-        <CompanyLogo company={exp.company} size={64} />
+      <div className="p-1 sm:p-2">
+        <CompanyLogo company={exp.company} size={48} />
       </div>
     ),
     children: (
       <Card
-        className="mb-4 hover:shadow-lg transition-shadow duration-300 border-slate-700 ml-6"
+        className="mb-4 hover:shadow-lg transition-shadow duration-300 border-slate-700 ml-0 sm:ml-4 md:ml-6"
         title={
-          <div className="flex items-center justify-between flex-wrap gap-2">
-            <div>
-              <h3 className="text-xl font-bold text-slate-100 m-0">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4">
+            <div className="flex-1">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-100 m-0">
                 {exp.title}
               </h3>
-              <p className="text-slate-400 m-0 text-sm">{exp.company}</p>
+              <p className="text-slate-400 m-0 text-xs sm:text-sm">{exp.company}</p>
             </div>
-            <div className="text-right">
-              <span className="text-primary-400 font-semibold">
+            <div className="text-left sm:text-right w-full sm:w-auto">
+              <span className="text-primary-400 font-semibold text-sm sm:text-base block sm:inline">
                 {exp.period}
               </span>
               {exp.isMentor && (
                 <div className="mt-2">
-                  <span className="text-slate-500 text-sm">
+                  <span className="text-slate-500 text-xs sm:text-sm">
                     Расскажи, что такое замыкание?{' '}
                   </span>
                   <ClosureExplanation />
@@ -444,10 +444,10 @@ const ExperienceTimeline = () => {
           </div>
         }
       >
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           <div>
-            <h4 className="text-slate-200 font-semibold mb-2">Роль:</h4>
-            <p className="text-slate-300">{exp.role}</p>
+            <h4 className="text-slate-200 font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Роль:</h4>
+            <p className="text-slate-300 text-sm sm:text-base">{exp.role}</p>
           </div>
           
           <Collapse
@@ -456,12 +456,12 @@ const ExperienceTimeline = () => {
               {
                 key: `${index}-tasks`,
                 label: (
-                  <span className="text-slate-300">
+                  <span className="text-slate-300 text-sm sm:text-base">
                     Задачи ({exp.tasks.length})
                   </span>
                 ),
                 children: (
-                  <ul className="list-disc list-inside space-y-2 text-slate-300">
+                  <ul className="list-disc list-inside space-y-1.5 sm:space-y-2 text-slate-300 text-sm sm:text-base">
                     {exp.tasks.map((task, idx) => (
                       <li key={idx}>{task}</li>
                     ))}
@@ -471,12 +471,12 @@ const ExperienceTimeline = () => {
               {
                 key: `${index}-achievements`,
                 label: (
-                  <span className="text-slate-300">
+                  <span className="text-slate-300 text-sm sm:text-base">
                     Ключевые достижения ({exp.achievements.length})
                   </span>
                 ),
                 children: (
-                  <ul className="list-disc list-inside space-y-3 text-slate-300">
+                  <ul className="list-disc list-inside space-y-2 sm:space-y-3 text-slate-300 text-sm sm:text-base">
                     {exp.achievements.map((achievement, idx) => (
                       <li key={idx} className="leading-relaxed">
                         {parseMarkdown(achievement, `achievement-${idx}`)}
@@ -493,36 +493,36 @@ const ExperienceTimeline = () => {
   }))
 
   return (
-    <section id="experience" className="py-12 px-4 max-w-5xl mx-auto">
-      <div ref={sectionRef} className="bg-slate-900/50 rounded-3xl p-8 border border-slate-700/50 relative">
+    <section id="experience" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 max-w-5xl mx-auto">
+      <div ref={sectionRef} className="bg-slate-900/50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-slate-700/50 relative">
       {/* Маркер начала блока */}
       <div ref={startMarkerRef} className="absolute top-0 left-0 w-full h-1" />
       
-      <div className="flex flex-col items-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-slate-100">
+      <div className="flex flex-col items-center mb-8 sm:mb-12 md:mb-16">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 text-slate-100 px-2">
           Опыт работы
         </h2>
         {/* Fixed переключатель */}
         <div 
-          className="fixed left-1/2 transform -translate-x-1/2 z-50 transition-opacity duration-300"
+          className="fixed left-1/2 transform -translate-x-1/2 z-50 transition-opacity duration-300 w-full px-4"
           style={{ 
-            top: '1rem',
+            top: '0.5rem',
             opacity: showSegmented ? 1 : 0,
             pointerEvents: showSegmented ? 'auto' : 'none'
           }}
         >
-          <div className="relative w-full max-w-2xl px-4">
+          <div className="relative w-full max-w-2xl mx-auto">
             <Segmented
               value={isRealMode ? 'real' : 'expected'}
               onChange={(value) => setIsRealMode(value === 'real')}
               options={[
                 {
                   label: (
-                    <div className="text-center py-2">
-                      <div className="text-xl md:text-2xl font-bold">
+                    <div className="text-center py-1 sm:py-2">
+                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-tight">
                         Ожидание
                       </div>
-                      <div className="text-xs text-slate-400 mt-1">
+                      <div className="text-[10px] sm:text-xs text-slate-400 mt-0.5 sm:mt-1">
                         что хотят видеть
                       </div>
                     </div>
@@ -531,11 +531,11 @@ const ExperienceTimeline = () => {
                 },
                 {
                   label: (
-                    <div className="text-center py-2">
-                      <div className="text-xl md:text-2xl font-bold">
+                    <div className="text-center py-1 sm:py-2">
+                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-tight">
                         Действительность
                       </div>
-                      <div className="text-xs text-slate-400 mt-1">
+                      <div className="text-[10px] sm:text-xs text-slate-400 mt-0.5 sm:mt-1">
                         тоже самое
                       </div>
                     </div>
@@ -545,12 +545,11 @@ const ExperienceTimeline = () => {
               ]}
               size="large"
               block
-              className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 border-2 border-slate-600 rounded-2xl shadow-2xl"
+              className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 border-2 border-slate-600 rounded-xl sm:rounded-2xl shadow-2xl"
               style={{
-                minWidth: '500px',
-                height: '80px',
-                fontSize: '20px',
-                padding: '4px',
+                height: 'auto',
+                minHeight: '60px',
+                padding: '2px',
               }}
             />
           </div>

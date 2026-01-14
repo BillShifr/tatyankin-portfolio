@@ -42,12 +42,12 @@ const achievements: AchievementItem[] = [
 
 const NotableAchievements = () => {
   return (
-    <section id="notable-achievements" className="py-12 px-4 max-w-6xl mx-auto">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100">
+    <section id="notable-achievements" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 max-w-6xl mx-auto">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-slate-100 px-2">
          Интересные кейсы
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {achievements.map((achievement) => (
           <Card
             key={achievement.id}
@@ -63,17 +63,19 @@ const NotableAchievements = () => {
 
             {/* Контент */}
             <div className="relative z-10">
-              <div className="flex justify-center mb-6">
+              <div className="flex justify-center mb-4 sm:mb-6">
                 <div className="text-primary-400 group-hover:text-primary-300 transition-colors">
-                  {achievement.icon}
+                  <div className="text-3xl sm:text-4xl md:text-5xl">
+                    {achievement.icon}
+                  </div>
                 </div>
               </div>
 
-              <h3 className="text-2xl font-bold text-slate-100 mb-4 text-center group-hover:text-primary-300 transition-colors">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-100 mb-3 sm:mb-4 text-center group-hover:text-primary-300 transition-colors px-2">
                 {achievement.title}
               </h3>
 
-              <p className="text-slate-300 leading-relaxed text-center">
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed text-center px-2">
                 {achievement.description}
               </p>
             </div>

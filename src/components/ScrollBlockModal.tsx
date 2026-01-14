@@ -219,7 +219,8 @@ const ScrollBlockModal = ({
       closable={false}
       maskClosable={false}
       keyboard={false}
-      width={800}
+      width="90%"
+      style={{ maxWidth: '800px' }}
       centered
       styles={{
         mask: {
@@ -229,32 +230,32 @@ const ScrollBlockModal = ({
         content: {
           backgroundColor: '#1e293b',
           border: '2px solid #3b82f6',
-          borderRadius: '16px',
+          borderRadius: '12px',
           maxHeight: '85vh',
         },
         header: {
           backgroundColor: '#1e293b',
           borderBottom: '1px solid #334155',
-          padding: '24px',
+          padding: '16px sm:20px md:24px',
         },
         body: {
           backgroundColor: '#1e293b',
-          padding: '24px 32px',
+          padding: '16px sm:20px md:24px lg:32px',
           maxHeight: 'calc(85vh - 140px)',
           overflowY: 'auto',
         },
         footer: {
           backgroundColor: '#1e293b',
           borderTop: '1px solid #334155',
-          padding: '16px 24px',
+          padding: '12px sm:16px md:24px',
         },
       }}
     >
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-100 mb-4 sm:mb-6 px-2">
           {title}
         </h2>
-        <div className="modal-content-scroll text-lg text-slate-300 leading-relaxed text-left">
+        <div className="modal-content-scroll text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed text-left">
           {content.split('\n').map((paragraph, index) => {
             if (!paragraph.trim()) {
               return <div key={index} className="h-2" />
