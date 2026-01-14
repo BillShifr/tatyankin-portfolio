@@ -24,19 +24,6 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
     }
   }, [showMetaphor, onToggle])
 
-  const handleToggle = () => {
-    const newValue = !showMetaphor
-    if (newValue) {
-      // Сохраняем текущую позицию скролла перед открытием
-      scrollPositionRef.current = window.scrollY
-      setShowMetaphor(true)
-      window.dispatchEvent(new CustomEvent('contactMap:open'))
-    } else {
-      setShowMetaphor(false)
-      window.dispatchEvent(new CustomEvent('contactMap:close'))
-    }
-  }
-
   const handleReturn = () => {
     setShowMetaphor(false)
     window.dispatchEvent(new CustomEvent('contactMap:close'))
