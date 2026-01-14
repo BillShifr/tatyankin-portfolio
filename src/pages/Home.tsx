@@ -1,8 +1,10 @@
 import Hero from '../components/Hero'
 import ExperienceTimeline from '../components/ExperienceTimeline'
+import Education from '../components/Education'
 import TechStack from '../components/TechStack'
 import PersonalLinks from '../components/PersonalLinks'
 import Principles from '../components/Principles'
+import FinalSummary from '../components/FinalSummary'
 import Contact from '../components/Contact'
 
 const Home = () => {
@@ -22,9 +24,11 @@ const Home = () => {
       
       <Hero />
       <ExperienceTimeline />
+      <Education />
       <TechStack />
       <PersonalLinks />
       <Principles />
+      <FinalSummary />
       <Contact />
     </div>
   )

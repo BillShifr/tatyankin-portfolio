@@ -272,21 +272,6 @@ const Principles = () => {
         ))}
       </Row>
 
-      {/* Дополнительная информация */}
-      <div className="mt-16 text-center">
-        <div className="inline-block p-6 bg-slate-800 rounded-lg border border-slate-700">
-          <p className="text-slate-300 mb-2">
-            <strong className="text-primary-400">Образование:</strong> Лицей ЮФМЛ, Югорский государственный университет - Ханты-Мансийск
-          </p>
-          <p className="text-slate-300 mb-2">
-            <strong className="text-primary-400">Степень:</strong> Магистр (2020, 2022)
-          </p>
-          <p className="text-slate-300">
-            <strong className="text-primary-400">Публикации:</strong> Habr
-            (статьи о React, TypeScript, архитектуре фронтенда)
-          </p>
-        </div>
-      </div>
     </section>
   )
 }
