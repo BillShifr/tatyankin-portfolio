@@ -134,7 +134,7 @@ const FinalSummary = () => {
 
             {/* Дополнительный акцент */}
             <div className="mt-6 sm:mt-8 text-slate-400 text-xs sm:text-sm italic px-2">
-              Готов обсудить детали при личной встрече
+              Буду рад обсудить детали при личной встрече
             </div>
           </div>
         </Card>
