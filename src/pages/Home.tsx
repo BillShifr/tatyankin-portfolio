@@ -7,6 +7,8 @@ import PersonalLinks from '../components/PersonalLinks'
 import Principles from '../components/Principles'
 import FinalSummary from '../components/FinalSummary'
 import Contact from '../components/Contact'
+import TechLeadBlock from '../components/TechLeadBlock'
+import HonestBlock from '../components/HonestBlock'
 
 const Home = () => {
   return (
@@ -24,13 +26,15 @@ const Home = () => {
       </div>
       
       <Hero />
-      <ExperienceTimeline />
-      <NotableAchievements />
       <Education />
+      <ExperienceTimeline />
+      <TechLeadBlock />
+      <NotableAchievements />
       <TechStack />
       <PersonalLinks />
       <Principles />
       <FinalSummary />
+      <HonestBlock />
       <Contact />
       
       {/* Бегущая строка в футере */}
