@@ -44,7 +44,6 @@ const ScrollBlockModal = ({
   const scrollPositionRef = useRef(0)
   const hasTriggeredRef = useRef(false)
 
-  // Блокировка скролла когда модальное окно видимо
   useEffect(() => {
     if (isVisible) {
       // Сохраняем позицию скролла
