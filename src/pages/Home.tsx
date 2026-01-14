@@ -1,6 +1,7 @@
 import Hero from '../components/Hero'
 import ExperienceTimeline from '../components/ExperienceTimeline'
 import TechStack from '../components/TechStack'
+import PersonalLinks from '../components/PersonalLinks'
 import Principles from '../components/Principles'
 import Contact from '../components/Contact'
 
@@ -22,6 +23,7 @@ const Home = () => {
       <Hero />
       <ExperienceTimeline />
       <TechStack />
+      <PersonalLinks />
       <Principles />
       <Contact />
     </div>

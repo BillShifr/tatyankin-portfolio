@@ -1,6 +1,18 @@
 import { Card, Form, Input, Button, message } from 'antd'
-import { MailOutlined, SendOutlined } from '@ant-design/icons'
+import { MailOutlined, SendOutlined, GithubOutlined, BookOutlined } from '@ant-design/icons'
 import type { FormProps } from 'antd'
+
+// SVG иконка Telegram в синем стиле
+const TelegramIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.193l-1.87 8.81c-.14.625-.52.78-1.05.485l-2.9-2.14-1.4 1.345c-.14.14-.26.26-.535.26l.2-2.84 5.36-4.84c.234-.21-.05-.325-.36-.115l-6.62 4.17-2.85-.89c-.62-.195-.635-.62.13-.93l11.1-4.28c.51-.19.96.115.79.615z" />
+  </svg>
+)
 
 interface ContactFormData {
   name: string
@@ -104,7 +116,7 @@ const Contact = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-3 p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white"
             >
-              <span className="text-2xl">📱</span>
+              <TelegramIcon className="text-2xl text-primary-400 w-6 h-6" />
               <span>Telegram</span>
             </a>
             <a
@@ -113,7 +125,7 @@ const Contact = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-3 p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white"
             >
-              <span className="text-2xl">📝</span>
+              <BookOutlined className="text-2xl text-primary-400" />
               <span>Habr</span>
             </a>
             <a
@@ -122,7 +134,7 @@ const Contact = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-3 p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors text-slate-300 hover:text-white"
             >
-              <span className="text-2xl">💻</span>
+              <GithubOutlined className="text-2xl text-primary-400" />
               <span>GitHub</span>
             </a>
           </div>
