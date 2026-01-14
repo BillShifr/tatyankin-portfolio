@@ -1,5 +1,5 @@
 import { Card } from 'antd'
-import { MailOutlined, GithubOutlined, PhoneOutlined } from '@ant-design/icons'
+import { MailOutlined, PhoneOutlined } from '@ant-design/icons'
 
 // SVG иконка Telegram в синем стиле
 const TelegramIcon = ({ className }: { className?: string }) => (

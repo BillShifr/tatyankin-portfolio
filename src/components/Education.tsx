@@ -1,5 +1,5 @@
 import { Card, Timeline } from 'antd'
-import { BookOutlined, TrophyOutlined, UserOutlined, TeamOutlined } from '@ant-design/icons'
+import { BookOutlined, TrophyOutlined, TeamOutlined } from '@ant-design/icons'
 
 // SVG иконка диплома в синем стиле
 const DiplomaIcon = ({ className }: { className?: string }) => (
@@ -46,7 +46,7 @@ const educationItems: EducationItem[] = [
 ]
 
 const Education = () => {
-  const timelineItems = educationItems.map((item, index) => ({
+  const timelineItems = educationItems.map((item) => ({
     dot: item.icon,
     children: (
       <Card
