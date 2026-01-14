@@ -16,7 +16,7 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
     if (onToggle) {
       onToggle(showMetaphor)
     }
-    // Отправляем события для Layout
+
     if (showMetaphor) {
       window.dispatchEvent(new CustomEvent('contactMap:open'))
     } else {
