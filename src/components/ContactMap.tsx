@@ -60,9 +60,10 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
         size="large"
         onClick={handleToggle}
         block
-        className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 h-16 text-xl font-bold mt-8"
+        className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 h-auto min-h-[44px] sm:min-h-[52px] md:min-h-[56px] lg:min-h-[64px] text-sm sm:text-base md:text-lg lg:text-xl font-bold mt-4 sm:mt-6 md:mt-8 px-3 sm:px-4 md:px-6 whitespace-normal break-words"
+        style={{ wordBreak: 'break-word' }}
       >
-        остались вопросы?
+        <span className="block text-center">остались вопросы?</span>
       </Button>
 
       {showMetaphor && typeof document !== 'undefined' 
@@ -103,9 +104,10 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
                             size="large"
                             icon={<ArrowLeftOutlined />}
                             onClick={handleReturn}
-                            className="bg-white/20 hover:bg-white/30 text-white border-white/40 h-12 px-8 text-lg font-semibold backdrop-blur-sm"
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/40 h-auto min-h-[44px] sm:min-h-[48px] md:min-h-[52px] px-4 sm:px-6 md:px-8 text-sm sm:text-base md:text-lg font-semibold backdrop-blur-sm whitespace-normal break-words max-w-full"
+                            style={{ wordBreak: 'break-word' }}
                           >
-                            Вернуться
+                            <span className="block text-center">Вернуться</span>
                           </Button>
                         </div>
                       </div>

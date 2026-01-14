@@ -2,18 +2,6 @@ import { Card } from 'antd'
 import { RocketOutlined } from '@ant-design/icons'
 import { useState } from 'react'
 
-// SVG иконка указателя
-const PointerIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M13.64 21.97c-.36.02-.72-.08-1.04-.26l-3.46-2.07c-.51-.31-.87-.84-1.01-1.44l-.85-3.57L2.3 11.1c-.39-.39-.39-1.02 0-1.41L11.05 1.05c.39-.39 1.02-.39 1.41 0l8.75 8.75c.39.39.39 1.02 0 1.41l-3.53 3.53-3.57.85c-.6.14-1.13.5-1.44 1.01l-2.07 3.46c-.18.32-.44.58-.76.76-.32.18-.68.28-1.04.26zm-1.64-2.64l2.07-3.46c.18-.31.48-.54.85-.65l4.23-1.01L19.5 9.5 10.5.5 1.5 9.5l5.75 5.75-1.01 4.23c-.11.37-.34.67-.65.85l-3.46 2.07c-.31.18-.68.18-.99 0-.31-.18-.5-.5-.5-.85v-7.07c0-.28.11-.55.29-.75L9.5 1.5l10 10v7.07c0 .35-.19.67-.5.85-.31.18-.68.18-.99 0z" />
-  </svg>
-)
-
 const FinalSummary = () => {
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
@@ -106,76 +94,76 @@ const FinalSummary = () => {
             </div>
 
             {/* Блок с условиями */}
-            <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-700/50 relative overflow-x-hidden">
+            <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-700/50 relative w-full overflow-hidden">
               {/* Анимированное сообщение */}
               {showMessage && (
-                <div className="absolute -top-14 sm:-top-16 md:-top-20 left-1/2 transform -translate-x-1/2 z-50 animate-bounce w-full max-w-[calc(100%-2rem)] px-2">
+                <div className="fixed sm:absolute top-20 sm:-top-16 md:-top-20 left-1/2 transform -translate-x-1/2 z-50 animate-bounce w-[calc(100%-2rem)] sm:w-auto max-w-[90vw] sm:max-w-none px-2">
                   <div className="bg-gradient-to-r from-primary-500 to-cyan-500 text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-full shadow-2xl text-xs sm:text-sm md:text-base lg:text-xl font-bold text-center break-words">
                     {messageText}
                   </div>
                 </div>
               )}
               
-              <div className="flex flex-col md:flex-row items-stretch md:items-center justify-center gap-3 sm:gap-4 md:gap-6 w-full overflow-x-hidden">
+              <div className="w-full space-y-3 sm:space-y-4">
                 {/* Блок с ЗП */}
                 <div
-                  className="relative w-full md:w-auto flex items-center justify-center bg-gradient-to-r from-primary-600/30 via-primary-500/30 to-primary-600/30 border-2 border-primary-500/50 rounded-xl sm:rounded-2xl px-2 sm:px-3 md:px-4 lg:px-6 xl:px-10 py-3 sm:py-4 md:py-6 lg:py-8 backdrop-blur-sm shadow-2xl shadow-primary-500/20 hover:shadow-primary-500/40 hover:border-primary-400 hover:scale-105 transition-all duration-300 cursor-pointer active:scale-95 group min-w-0 flex-shrink"
+                  className="relative w-full flex items-center justify-center bg-gradient-to-r from-primary-600/30 via-primary-500/30 to-primary-600/30 border-2 border-primary-500/50 rounded-lg sm:rounded-xl md:rounded-2xl px-2 sm:px-3 md:px-4 lg:px-5 py-2.5 sm:py-3 md:py-4 lg:py-5 backdrop-blur-sm shadow-2xl shadow-primary-500/20 hover:shadow-primary-500/40 hover:border-primary-400 hover:scale-105 transition-all duration-300 cursor-pointer active:scale-95 group min-w-0"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   onClick={handleClick}
+                  style={{ maxWidth: '100%' }}
                 >
-                  {/* Иконка указателя в углу */}
-                  <div className="absolute top-1 right-1 sm:top-2 sm:right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
-                    <PointerIcon className="text-primary-400 w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
+                  {/* Затемнение при наведении */}
+                  <div
+                    className={`absolute inset-0 bg-black/70 rounded-lg sm:rounded-xl md:rounded-2xl transition-opacity duration-300 ${
+                      isHovered && !isClicked ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                  
+                  {/* Надпись "валидно!" - показывается при наведении, но скрывается после клика */}
+                  <div
+                    className={`absolute inset-0 flex items-center justify-center z-20 transition-all duration-300 px-2 ${
+                      isHovered && !isClicked
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-0 scale-95 pointer-events-none'
+                    }`}
+                  >
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-green-400 animate-pulse break-words text-center">
+                      валидно!
+                    </span>
                   </div>
-                {/* Затемнение при наведении */}
-                <div
-                  className={`absolute inset-0 bg-black/70 rounded-xl sm:rounded-2xl transition-opacity duration-300 ${
-                    isHovered && !isClicked ? 'opacity-100' : 'opacity-0'
-                  }`}
-                />
-                
-                {/* Надпись "валидно!" - показывается при наведении, но скрывается после клика */}
-                <div
-                  className={`absolute inset-0 flex items-center justify-center z-20 transition-all duration-300 px-2 ${
-                    isHovered && !isClicked
-                      ? 'opacity-100 scale-100'
-                      : 'opacity-0 scale-95 pointer-events-none'
-                  }`}
-                >
-                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-green-400 animate-pulse break-words text-center">
-                    валидно!
-                  </span>
-                </div>
 
-                {/* Основной контент */}
-                <div
-                  className={`relative z-10 text-center transition-opacity duration-300 w-full min-w-0 ${
-                    isHovered && !isClicked ? 'opacity-0' : 'opacity-100'
-                  }`}
+                  {/* Основной контент */}
+                  <div
+                    className={`relative z-10 text-center transition-opacity duration-300 w-full min-w-0 ${
+                      isHovered && !isClicked ? 'opacity-0' : 'opacity-100'
+                    }`}
+                  >
+                    <div className="text-[8px] sm:text-[10px] md:text-xs text-slate-400 uppercase tracking-wider mb-1 sm:mb-1.5 flex items-center justify-center gap-0.5 sm:gap-1 flex-wrap">
+                      <span className="whitespace-nowrap">Требуемые условия</span>
+                      <span className="text-primary-400 text-[8px] sm:text-[10px] md:text-xs whitespace-nowrap">(кликни)</span>
+                    </div>
+                    <div className="text-[11px] sm:text-xs md:text-sm lg:text-base font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-300 to-primary-400 break-words min-w-0">
+                      ЗП {salary >= 500000 ? 'до' : 'от'} {salary.toLocaleString('ru-RU')} ₽
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Блок "команда где мы поняли, что нашли друг друга" */}
+                <div 
+                  className="relative w-full flex items-center justify-center bg-gradient-to-r from-cyan-600/30 via-blue-500/30 to-cyan-600/30 border-2 border-cyan-500/50 rounded-lg sm:rounded-xl md:rounded-2xl px-2 sm:px-3 md:px-4 lg:px-5 py-2.5 sm:py-3 md:py-4 lg:py-5 backdrop-blur-sm shadow-2xl shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all duration-300 min-w-0"
+                  style={{ maxWidth: '100%' }}
                 >
-                  <div className="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mb-1 sm:mb-2 flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
-                    <span>Требуемые условия</span>
-                    <span className="text-primary-400 text-[10px] sm:text-xs">(кликни)</span>
-                  </div>
-                  <div className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-300 to-primary-400 break-words">
-                    ЗП {salary >= 500000 ? 'до' : 'от'} {salary.toLocaleString('ru-RU')} ₽
-                  </div>
-                </div>
-              </div>
-              
-              {/* Блок "команда где мы поняли, что нашли друг друга" */}
-              <div className="relative w-full md:w-auto flex items-center justify-center bg-gradient-to-r from-cyan-600/30 via-blue-500/30 to-cyan-600/30 border-2 border-cyan-500/50 rounded-xl sm:rounded-2xl px-2 sm:px-3 md:px-4 lg:px-6 xl:px-10 py-3 sm:py-4 md:py-6 lg:py-8 backdrop-blur-sm shadow-2xl shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all duration-300 min-w-0 flex-shrink mt-3 sm:mt-4 md:mt-0">
-                <div className="text-center w-full min-w-0">
-                  <div className="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mb-1 sm:mb-2">
-                    Идеальная ситуация
-                  </div>
-                  <div className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-300 to-cyan-400 break-words">
-                    Команда, где мы поняли, что нашли друг друга
+                  <div className="text-center w-full min-w-0">
+                    <div className="text-[8px] sm:text-[10px] md:text-xs text-slate-400 uppercase tracking-wider mb-1 sm:mb-1.5 whitespace-nowrap">
+                      Идеальная ситуация
+                    </div>
+                    <div className="text-[11px] sm:text-xs md:text-sm lg:text-base font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-300 to-cyan-400 break-words min-w-0">
+                      Команда, где мы поняли, что нашли друг друга
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
 
             {/* Дополнительный акцент */}

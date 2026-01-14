@@ -17,7 +17,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden py-4 sm:py-6 md:py-8">
+    <section className="flex items-center justify-center relative overflow-hidden py-2 sm:py-4 md:py-6 lg:py-8" style={{ minHeight: '100dvh' }}>
       {/* Анимированный фон */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-primary-500 rounded-full blur-3xl animate-pulse" />
@@ -42,9 +42,10 @@ const Hero = () => {
           size="large"
           icon={<DownOutlined />}
           onClick={scrollToExperience}
-          className="bg-primary-600 hover:bg-primary-700 border-primary-600 hover:border-primary-700 h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg"
+          className="bg-primary-600 hover:bg-primary-700 border-primary-600 hover:border-primary-700 h-auto min-h-[44px] sm:min-h-[48px] md:min-h-[52px] px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base lg:text-lg whitespace-normal break-words max-w-full"
+          style={{ wordBreak: 'break-word' }}
         >
-          Погрузиться в опыт
+          <span className="block text-center">Погрузиться в опыт</span>
         </Button>
         
         <ConfettiReveal />

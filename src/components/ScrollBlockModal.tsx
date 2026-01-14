@@ -231,37 +231,37 @@ const ScrollBlockModal = ({
           backgroundColor: '#1e293b',
           border: '2px solid #3b82f6',
           borderRadius: '12px',
-          maxHeight: '85vh',
+          maxHeight: '70vh',
         },
         header: {
           backgroundColor: '#1e293b',
           borderBottom: '1px solid #334155',
-          padding: '16px sm:20px md:24px',
+          padding: '8px 12px',
         },
         body: {
           backgroundColor: '#1e293b',
-          padding: '16px sm:20px md:24px lg:32px',
-          maxHeight: 'calc(85vh - 140px)',
+          padding: '8px 12px',
+          maxHeight: 'calc(70vh - 100px)',
           overflowY: 'auto',
         },
         footer: {
           backgroundColor: '#1e293b',
           borderTop: '1px solid #334155',
-          padding: '12px sm:16px md:24px',
+          padding: '10px 12px',
         },
       }}
     >
       <div className="text-center">
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-100 mb-4 sm:mb-6 px-2">
+        <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-100 mb-2 sm:mb-3 px-2">
           {title}
         </h2>
-        <div className="modal-content-scroll text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed text-left">
+        <div className="modal-content-scroll text-xs sm:text-sm md:text-base text-slate-300 leading-relaxed text-left">
           {content.split('\n').map((paragraph, index) => {
             if (!paragraph.trim()) {
-              return <div key={index} className="h-2" />
+              return <div key={index} className="h-1 sm:h-1.5" />
             }
             return (
-              <p key={index} className="mb-2 last:mb-0">
+              <p key={index} className="mb-1 sm:mb-1.5 md:mb-2 last:mb-0">
                 {parseMarkdown(paragraph, `para-${index}`)}
               </p>
             )

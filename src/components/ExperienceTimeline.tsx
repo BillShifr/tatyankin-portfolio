@@ -212,6 +212,36 @@ const ClosureExplanation = () => {
         okText="Понятно!"
         cancelText="Закрыть"
         className="text-slate-200"
+        width="90%"
+        style={{ maxWidth: '500px' }}
+        styles={{
+          mask: {
+            backgroundColor: 'rgba(15, 23, 42, 0.85)',
+            backdropFilter: 'blur(4px)',
+          },
+          content: {
+            backgroundColor: '#1e293b',
+            border: '2px solid #3b82f6',
+            borderRadius: '12px',
+            maxHeight: '70vh',
+          },
+          header: {
+            backgroundColor: '#1e293b',
+            borderBottom: '1px solid #334155',
+            padding: '12px 16px',
+          },
+          body: {
+            backgroundColor: '#1e293b',
+            padding: '12px 16px',
+            maxHeight: 'calc(70vh - 100px)',
+            overflowY: 'auto',
+          },
+          footer: {
+            backgroundColor: '#1e293b',
+            borderTop: '1px solid #334155',
+            padding: '10px 12px',
+          },
+        }}
       >
         <div className="space-y-4">
           <p>

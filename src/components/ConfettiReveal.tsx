@@ -304,15 +304,16 @@ const ConfettiReveal = () => {
               size="large"
               icon={<QuestionCircleOutlined />}
               onClick={handleReveal}
-              className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-700 border-0 h-16 px-12 text-xl font-bold shadow-2xl hover:shadow-pink-500/50 transform hover:scale-110 transition-all duration-300 relative overflow-hidden group"
+              className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-700 border-0 h-auto min-h-[44px] sm:min-h-[52px] md:min-h-[60px] lg:min-h-[64px] px-4 sm:px-6 md:px-8 lg:px-12 text-sm sm:text-base md:text-lg lg:text-xl font-bold shadow-2xl hover:shadow-pink-500/50 transform hover:scale-110 transition-all duration-300 relative overflow-hidden group whitespace-normal break-words max-w-full"
               style={{
                 backgroundSize: '200% 200%',
                 animation: 'gradient-shift 3s ease infinite, button-pulse 2s ease-in-out infinite',
+                wordBreak: 'break-word',
               }}
             >
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center gap-1 sm:gap-2 justify-center">
                 <span>узнать</span>
-                <QuestionCircleOutlined className="animate-spin-slow" />
+                <QuestionCircleOutlined className="animate-spin-slow text-sm sm:text-base md:text-lg lg:text-xl" />
               </span>
               <div 
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
@@ -351,9 +352,10 @@ const ConfettiReveal = () => {
               type="default"
               size="large"
               onClick={handleClose}
-              className="mt-8 bg-white/30 hover:bg-white/40 text-white border-white/50 h-14 px-10 text-lg font-semibold shadow-xl backdrop-blur-sm"
+              className="mt-4 sm:mt-6 md:mt-8 bg-white/30 hover:bg-white/40 text-white border-white/50 h-auto min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] px-4 sm:px-6 md:px-8 lg:px-10 text-sm sm:text-base md:text-lg font-semibold shadow-xl backdrop-blur-sm whitespace-normal break-words max-w-full"
+              style={{ wordBreak: 'break-word' }}
             >
-              Закрыть
+              <span className="block text-center">Закрыть</span>
             </Button>
           </div>
         </div>

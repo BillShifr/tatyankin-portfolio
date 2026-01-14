@@ -101,13 +101,14 @@ const PersonalLinks = () => {
                 <Button
                   type="primary"
                   size="large"
-                  className="bg-primary-600 hover:bg-primary-500 border-primary-500 shadow-lg hover:shadow-primary-500/50 transition-all duration-300 text-sm sm:text-base"
+                  className="bg-primary-600 hover:bg-primary-500 border-primary-500 shadow-lg hover:shadow-primary-500/50 transition-all duration-300 text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-2.5 h-auto min-h-[36px] sm:min-h-[40px] md:min-h-[44px] whitespace-normal break-words max-w-full"
+                  style={{ wordBreak: 'break-word' }}
                   onClick={(e) => {
                     e.stopPropagation()
                     handleClick(link.id)
                   }}
                 >
-                  Посмотреть
+                  <span className="block text-center">Посмотреть</span>
                 </Button>
               </div>
             </Card>
@@ -133,21 +134,24 @@ const PersonalLinks = () => {
           content: {
             backgroundColor: '#1e293b',
             border: '2px solid #3b82f6',
-            borderRadius: '12px sm:rounded-2xl',
+            borderRadius: '12px',
+            maxHeight: '70vh',
           },
           header: {
             backgroundColor: '#1e293b',
             borderBottom: '1px solid #334155',
-            padding: '16px sm:20px md:24px',
+            padding: '12px 16px',
           },
           body: {
             backgroundColor: '#1e293b',
-            padding: '20px sm:24px md:32px',
+            padding: '12px 16px',
+            maxHeight: 'calc(70vh - 100px)',
+            overflowY: 'auto',
           },
           footer: {
             backgroundColor: '#1e293b',
             borderTop: '1px solid #334155',
-            padding: '12px sm:16px md:24px',
+            padding: '10px 12px',
           },
         }}
       >

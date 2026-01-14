@@ -60,11 +60,12 @@ const Layout = () => {
 
   return (
     <div 
-      className={`min-h-screen relative transition-all duration-1000 origin-center ${
+      className={`relative transition-all duration-1000 origin-center ${
         isZoomed ? 'scale-0 opacity-0 pointer-events-none' : ''
       }`}
       style={{
         transformOrigin: 'center center',
+        minHeight: '100vh',
       }}
     >
       {/* Фоновые текстовые элементы для всего сайта */}

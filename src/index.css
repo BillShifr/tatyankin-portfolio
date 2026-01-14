@@ -250,3 +250,54 @@ body {
   text-shadow: 0 0 12px rgba(56, 189, 248, 0.8) !important;
 }
 
+/* Адаптивные кнопки в модалках */
+.ant-modal-footer .ant-btn {
+  min-height: 36px !important;
+  padding: 6px 12px !important;
+  font-size: 14px !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  line-height: 1.4 !important;
+}
+
+@media (min-width: 640px) {
+  .ant-modal-footer .ant-btn {
+    min-height: 40px !important;
+    padding: 8px 16px !important;
+    font-size: 15px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .ant-modal-footer .ant-btn {
+    min-height: 44px !important;
+    padding: 10px 20px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Адаптивные кнопки в модалках */
+.ant-modal-footer .ant-btn {
+  min-height: 36px !important;
+  padding: 6px 12px !important;
+  font-size: 14px !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  line-height: 1.4 !important;
+}
+
+@media (min-width: 640px) {
+  .ant-modal-footer .ant-btn {
+    min-height: 40px !important;
+    padding: 8px 16px !important;
+    font-size: 15px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .ant-modal-footer .ant-btn {
+    min-height: 44px !important;
+    padding: 10px 20px !important;
+    font-size: 16px !important;
+  }
+}
