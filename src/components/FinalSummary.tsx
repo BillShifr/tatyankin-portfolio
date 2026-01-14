@@ -40,7 +40,7 @@ const FinalSummary = () => {
     setShowValid(false)
   }
   return (
-    <section id="final-summary" className="py-20 px-4 max-w-5xl mx-auto">
+    <section id="final-summary" className="py-12 px-4 max-w-5xl mx-auto">
       <div className="relative">
         {/* Фоновые декоративные элементы */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 via-primary-500/10 to-primary-600/10 rounded-3xl blur-3xl" />

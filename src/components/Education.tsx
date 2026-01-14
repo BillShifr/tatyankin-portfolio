@@ -68,7 +68,7 @@ const Education = () => {
   }))
 
   return (
-    <section id="education" className="py-20 px-4 max-w-5xl mx-auto">
+    <section id="education" className="py-12 px-4 max-w-5xl mx-auto">
       <div className="text-center mb-16">
         <div className="inline-flex items-center gap-3 mb-4">
           <TrophyOutlined className="text-5xl text-primary-400" />

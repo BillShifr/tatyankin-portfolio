@@ -16,7 +16,7 @@ const TelegramIcon = ({ className }: { className?: string }) => (
 const Contact = () => {
 
   return (
-    <section id="contact" className="py-20 px-4 max-w-4xl mx-auto">
+    <section id="contact" className="py-12 px-4 max-w-4xl mx-auto">
       <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100">
         Связаться со мной
       </h2>

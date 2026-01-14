@@ -387,19 +387,19 @@ const TechStack = () => {
     : techStack
 
   return (
-    <section id="tech-stack" className="py-20 px-4 max-w-6xl mx-auto">
+    <section id="tech-stack" className="py-12 px-4 max-w-6xl mx-auto">
       <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-slate-100">
         Стек технологий
       </h2>
 
       {/* Фильтры по категориям */}
-      <div className="flex flex-wrap justify-center gap-2 mb-8">
+      <div className="flex flex-wrap justify-center gap-3 mb-8">
         <button
           onClick={() => setSelectedCategory(null)}
-          className={`px-4 py-2 rounded-lg transition-colors ${
+          className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
             selectedCategory === null
-              ? 'bg-primary-600 text-white'
-              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+              ? 'bg-gradient-to-r from-primary-600 to-primary-500 text-white shadow-lg shadow-primary-500/50 scale-105'
+              : 'bg-slate-800/50 text-slate-300 hover:bg-slate-700/50 hover:text-white border border-slate-700 hover:border-primary-500/50'
           }`}
         >
           Все
@@ -412,10 +412,10 @@ const TechStack = () => {
                 selectedCategory === category ? null : category
               )
             }
-            className={`px-4 py-2 rounded-lg transition-colors ${
+            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
               selectedCategory === category
-                ? 'bg-primary-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                ? 'bg-gradient-to-r from-primary-600 to-primary-500 text-white shadow-lg shadow-primary-500/50 scale-105'
+                : 'bg-slate-800/50 text-slate-300 hover:bg-slate-700/50 hover:text-white border border-slate-700 hover:border-primary-500/50'
             }`}
           >
             {category}

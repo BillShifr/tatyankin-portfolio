@@ -55,7 +55,7 @@ const PersonalLinks = () => {
 
   return (
     <>
-      <section id="personal-links" className="py-20 px-4 max-w-6xl mx-auto">
+      <section id="personal-links" className="py-12 px-4 max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100">
           Дополнительные материалы
         </h2>

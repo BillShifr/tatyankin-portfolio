@@ -187,7 +187,7 @@ const Principles = () => {
   }
 
   return (
-    <section id="principles" className="py-20 px-4 max-w-6xl mx-auto relative">
+    <section id="principles" className="py-12 px-4 max-w-6xl mx-auto relative">
       {/* Canvas для конфетти */}
       {showConfetti && (
         <canvas
