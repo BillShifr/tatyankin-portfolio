@@ -431,7 +431,7 @@ const ExperienceTimeline = () => {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Проверяем при загрузке
+    handleScroll() 
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
