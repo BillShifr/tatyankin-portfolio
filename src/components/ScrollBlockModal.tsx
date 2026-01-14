@@ -7,6 +7,36 @@ interface ScrollBlockModalProps {
   onClose?: () => void
 }
 
+// Функция для обработки markdown-разметки (жирный текст)
+const parseMarkdown = (text: string, keyPrefix: string) => {
+  const parts: (string | JSX.Element)[] = []
+  let lastIndex = 0
+  const regex = /\*\*(.*?)\*\*/g
+  let match
+  let keyCounter = 0
+
+  while ((match = regex.exec(text)) !== null) {
+    // Добавляем текст до жирного
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index))
+    }
+    // Добавляем жирный текст
+    parts.push(
+      <strong key={`${keyPrefix}-bold-${keyCounter++}`} className="text-slate-100 font-bold">
+        {match[1]}
+      </strong>
+    )
+    lastIndex = regex.lastIndex
+  }
+
+  // Добавляем оставшийся текст
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex))
+  }
+
+  return parts.length > 0 ? parts : [text]
+}
+
 const ScrollBlockModal = ({
   title = 'Добро пожаловать!',
   content = 'Это мое портфолио. Здесь вы найдете информацию о моем опыте работы, технологиях и проектах.',
@@ -170,50 +200,6 @@ const ScrollBlockModal = ({
     }
   }, [isVisible])
 
-  // Дополнительная блокировка когда модальное окно открыто
-  useEffect(() => {
-    if (!isVisible) return
-
-    const blockScroll = (e: Event) => {
-      e.preventDefault()
-      e.stopPropagation()
-      return false
-    }
-
-    const blockWheel = (e: WheelEvent) => {
-      e.preventDefault()
-      e.stopPropagation()
-      window.scrollTo(0, scrollPositionRef.current)
-      return false
-    }
-
-    const blockTouch = (e: TouchEvent) => {
-      e.preventDefault()
-      e.stopPropagation()
-      return false
-    }
-
-    const blockKeys = (e: KeyboardEvent) => {
-      if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Space', 'Home', 'End'].includes(e.key)) {
-        e.preventDefault()
-        e.stopPropagation()
-        return false
-      }
-    }
-
-    // Блокируем все способы скролла
-    window.addEventListener('scroll', blockScroll, { passive: false, capture: true })
-    window.addEventListener('wheel', blockWheel, { passive: false, capture: true })
-    window.addEventListener('touchmove', blockTouch, { passive: false, capture: true })
-    window.addEventListener('keydown', blockKeys, { passive: false })
-
-    return () => {
-      window.removeEventListener('scroll', blockScroll, { capture: true } as any)
-      window.removeEventListener('wheel', blockWheel, { capture: true } as any)
-      window.removeEventListener('touchmove', blockTouch, { capture: true } as any)
-      window.removeEventListener('keydown', blockKeys)
-    }
-  }, [isVisible])
 
   const handleClose = () => {
     setIsVisible(false)
@@ -235,7 +221,6 @@ const ScrollBlockModal = ({
       keyboard={false}
       width={800}
       centered
-      className="scroll-block-modal"
       maskStyle={{
         backgroundColor: 'rgba(15, 23, 42, 0.85)',
         backdropFilter: 'blur(4px)',
@@ -245,6 +230,7 @@ const ScrollBlockModal = ({
           backgroundColor: '#1e293b',
           border: '2px solid #3b82f6',
           borderRadius: '16px',
+          maxHeight: '85vh',
         },
         header: {
           backgroundColor: '#1e293b',
@@ -253,7 +239,9 @@ const ScrollBlockModal = ({
         },
         body: {
           backgroundColor: '#1e293b',
-          padding: '32px',
+          padding: '24px 32px',
+          maxHeight: 'calc(85vh - 140px)',
+          overflowY: 'auto',
         },
         footer: {
           backgroundColor: '#1e293b',
@@ -266,10 +254,17 @@ const ScrollBlockModal = ({
         <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-6">
           {title}
         </h2>
-        <div className="text-lg text-slate-300 leading-relaxed space-y-4">
-          {content.split('\n').map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+        <div className="modal-content-scroll text-lg text-slate-300 leading-relaxed text-left">
+          {content.split('\n').map((paragraph, index) => {
+            if (!paragraph.trim()) {
+              return <div key={index} className="h-2" />
+            }
+            return (
+              <p key={index} className="mb-2 last:mb-0">
+                {parseMarkdown(paragraph, `para-${index}`)}
+              </p>
+            )
+          })}
         </div>
       </div>
     </Modal>
