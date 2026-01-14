@@ -69,7 +69,6 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
       {showMetaphor && typeof document !== 'undefined' 
         ? createPortal(
             <div className="fixed inset-0 z-[9999] bg-slate-950 flex items-center justify-center overflow-hidden">
-              {/* Линия горизонта (вода) */}
               <div className="absolute left-0 right-0 top-[35%] h-1 bg-gradient-to-r from-transparent via-primary-400/50 to-transparent z-30" />
               
               {/* Вода (нижняя часть) */}
