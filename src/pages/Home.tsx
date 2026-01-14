@@ -32,6 +32,18 @@ const Home = () => {
       <Principles />
       <FinalSummary />
       <Contact />
+      
+      {/* Бегущая строка в футере */}
+      <div className="w-full overflow-hidden bg-gradient-to-r from-primary-600/20 via-primary-500/20 to-primary-600/20 border-y-2 border-primary-500/30">
+        <div className="flex animate-scroll">
+          <div className="flex whitespace-nowrap text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-primary-300 py-4 sm:py-5 md:py-6 lg:py-8">
+            <span className="mx-4 sm:mx-6 md:mx-8">Весь опыт релевантен, высшее образование, трудовая книжка на руках</span>
+            <span className="mx-4 sm:mx-6 md:mx-8">Весь опыт релевантен, высшее образование, трудовая книжка на руках</span>
+            <span className="mx-4 sm:mx-6 md:mx-8">Весь опыт релевантен, высшее образование, трудовая книжка на руках</span>
+            <span className="mx-4 sm:mx-6 md:mx-8">Весь опыт релевантен, высшее образование, трудовая книжка на руках</span>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

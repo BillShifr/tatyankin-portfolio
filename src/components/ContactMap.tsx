@@ -54,18 +54,6 @@ const ContactMap = ({ onToggle }: ContactMapProps) => {
 
   return (
     <>
-      <Button
-        ref={buttonRef}
-        type="primary"
-        size="large"
-        onClick={handleToggle}
-        block
-        className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 h-auto min-h-[44px] sm:min-h-[52px] md:min-h-[56px] lg:min-h-[64px] text-sm sm:text-base md:text-lg lg:text-xl font-bold mt-4 sm:mt-6 md:mt-8 px-3 sm:px-4 md:px-6 whitespace-normal break-words"
-        style={{ wordBreak: 'break-word' }}
-      >
-        <span className="block text-center">остались вопросы?</span>
-      </Button>
-
       {showMetaphor && typeof document !== 'undefined' 
         ? createPortal(
             <div className="fixed inset-0 z-[9999] bg-slate-950 flex items-center justify-center overflow-hidden">
