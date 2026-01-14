@@ -26,7 +26,14 @@ const educationItems: EducationItem[] = [
     institution: 'Югорский государственный университет',
     degree: 'Магистр',
     period: '2020, 2022',
-    description: 'Высшее образование по специальности',
+    description: 'Прикладная математика и информатика',
+    icon: <DiplomaIcon className="text-2xl text-primary-400 w-6 h-6" />,
+  },
+  {
+    institution: 'Югорский государственный университет',
+    degree: 'Бакалавр',
+    period: '2016-2020',
+    description: '09.00.00 ИНФОРМАТИКА И ВЫЧИСЛИТЕЛЬНАЯ ТЕХНИКА',
     icon: <DiplomaIcon className="text-2xl text-primary-400 w-6 h-6" />,
   },
   {
