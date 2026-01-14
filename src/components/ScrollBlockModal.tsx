@@ -15,7 +15,7 @@ const parseMarkdown = (text: string, keyPrefix: string) => {
   let keyCounter = 0
 
   while ((match = regex.exec(text)) !== null) {
-    // Добавляем текст до жирного
+
     if (match.index > lastIndex) {
       parts.push(text.substring(lastIndex, match.index))
     }
