@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 interface TechItem {
   name: string
-  category: 'Frontend' | 'State' | 'Tools' | 'Testing' | 'Styling' | 'Backend' | 'DevOps' | 'Other'
+  category: 'Frontend' | 'State' | 'Tools' | 'Testing' | 'Styling' | 'Backend' | 'DevOps' | 'SEO' | 'Other'
   color: string
   tooltip: string
 }
@@ -102,13 +102,13 @@ const techStack: TechItem[] = [
     name: 'SWR',
     category: 'State',
     color: 'blue',
-    tooltip: 'React hooks для data fetching с кешированием и ревалидацией.',
+    tooltip: 'React hooks для data fetching с кешированием и ревалидацией. Использовал для получения данных турниров и статистики в покер-платформе.',
   },
   {
     name: 'React Query',
     category: 'State',
     color: 'cyan',
-    tooltip: 'Мощная библиотека для управления серверным состоянием и кеширования.',
+    tooltip: 'Мощная библиотека для управления серверным состоянием и кеширования. Использовал в покер-платформе для синхронизации игрового состояния.',
   },
   {
     name: 'Axios',
@@ -129,6 +129,12 @@ const techStack: TechItem[] = [
     category: 'Frontend',
     color: 'orange',
     tooltip: 'Schema validation для форм. Работает в паре с React Hook Form.',
+  },
+  {
+    name: 'Zod',
+    category: 'Frontend',
+    color: 'cyan',
+    tooltip: 'TypeScript-first schema validation. Использовал для валидации API ответов и форм с полной type-safety.',
   },
   {
     name: 'Formik',
@@ -221,10 +227,22 @@ const techStack: TechItem[] = [
     tooltip: 'Мощная библиотека для создания высокопроизводительных анимаций. Использовал для сложных анимаций в покер-платформе.',
   },
   {
+    name: 'PixiJS',
+    category: 'Frontend',
+    color: 'gold',
+    tooltip: '2D WebGL рендерер для высокопроизводительной графики. Использовал в покер-платформе для рендеринга карт, фишек и игровых эффектов с высокой частотой кадров.',
+  },
+  {
     name: 'Three.js',
     category: 'Frontend',
     color: 'cyan',
     tooltip: '3D-библиотека для WebGL. Использовал для 3D-визуализации в покер-платформе (раздача карт с физикой полета, эффекты победителя).',
+  },
+  {
+    name: 'React Spring',
+    category: 'Frontend',
+    color: 'lime',
+    tooltip: 'Физически-основанная анимационная библиотека для React. Альтернатива Framer Motion для более точного контроля анимаций.',
   },
   
   // Utilities
@@ -233,6 +251,66 @@ const techStack: TechItem[] = [
     category: 'Other',
     color: 'default',
     tooltip: 'Утилитарная библиотека для работы с массивами, объектами и функциями.',
+  },
+  {
+    name: 'date-fns',
+    category: 'Other',
+    color: 'cyan',
+    tooltip: 'Современная библиотека для работы с датами. Легковесная альтернатива Moment.js.',
+  },
+  {
+    name: 'dayjs',
+    category: 'Other',
+    color: 'lime',
+    tooltip: 'Минималистичная библиотека для работы с датами. Использовал для форматирования времени в покер-платформе.',
+  },
+  {
+    name: 'i18next',
+    category: 'Frontend',
+    color: 'purple',
+    tooltip: 'Интернационализация (i18n) для React. Критично для покер-платформы с мультиязычной поддержкой.',
+  },
+  {
+    name: 'React Intl',
+    category: 'Frontend',
+    color: 'blue',
+    tooltip: 'Библиотека для интернационализации от Format.js. Поддержка множественных языков и локалей.',
+  },
+  {
+    name: 'React Helmet',
+    category: 'Frontend',
+    color: 'geekblue',
+    tooltip: 'Управление head документа для SEO. Динамическое изменение meta-тегов, title и Open Graph.',
+  },
+  {
+    name: 'Web Workers',
+    category: 'Frontend',
+    color: 'orange',
+    tooltip: 'Многопоточность в браузере. Использовал для тяжелых вычислений без блокировки UI (например, расчет вероятностей в покере).',
+  },
+  {
+    name: 'IndexedDB',
+    category: 'Frontend',
+    color: 'cyan',
+    tooltip: 'Клиентское хранилище для больших объемов данных. Использовал для офлайн-режима и кеширования.',
+  },
+  {
+    name: 'React.memo',
+    category: 'Frontend',
+    color: 'purple',
+    tooltip: 'Оптимизация рендеринга через мемоизацию компонентов. Критично для производительности в покер-платформе с частыми обновлениями UI.',
+  },
+  {
+    name: 'useMemo / useCallback',
+    category: 'Frontend',
+    color: 'geekblue',
+    tooltip: 'React хуки для оптимизации производительности через мемоизацию значений и функций.',
+  },
+  {
+    name: 'React Error Boundary',
+    category: 'Frontend',
+    color: 'red',
+    tooltip: 'Обработка ошибок в React компонентах. Graceful degradation для критических ошибок.',
   },
   
   // Maps & Real-time
@@ -246,7 +324,31 @@ const techStack: TechItem[] = [
     name: 'WebSocket',
     category: 'Frontend',
     color: 'cyan',
-    tooltip: 'Реал-тайм коммуникация для телеметрии и управления юнитами.',
+    tooltip: 'Реал-тайм коммуникация для телеметрии и управления юнитами. Использовал в покер-платформе для синхронизации игровых событий в реальном времени.',
+  },
+  {
+    name: 'Socket.io',
+    category: 'Frontend',
+    color: 'blue',
+    tooltip: 'Библиотека для реал-тайм коммуникации. Использовал в покер-платформе для синхронизации игровых событий между клиентами.',
+  },
+  {
+    name: 'React DnD',
+    category: 'Frontend',
+    color: 'purple',
+    tooltip: 'Drag and Drop библиотека для React. Использовал для интерактивных элементов в покер-платформе.',
+  },
+  {
+    name: 'React Window',
+    category: 'Frontend',
+    color: 'geekblue',
+    tooltip: 'Виртуализация для рендеринга больших списков. Критично для производительности при работе с большими таблицами данных.',
+  },
+  {
+    name: 'React Virtualized',
+    category: 'Frontend',
+    color: 'geekblue',
+    tooltip: 'Альтернативная библиотека для виртуализации больших списков и таблиц.',
   },
   
   // Testing
@@ -371,18 +473,68 @@ const techStack: TechItem[] = [
     tooltip: 'CI/CD в GitLab. Использовал в проекте ИГИТ для автоматизации процессов.',
   },
   
-  // Analytics & Monitoring
+  // SEO & Analytics
   {
-    name: 'GTM',
-    category: 'Other',
-    color: 'lime',
-    tooltip: 'Google Tag Manager для управления тегами и аналитикой.',
+    name: 'Google Analytics',
+    category: 'SEO',
+    color: 'orange',
+    tooltip: 'Веб-аналитика для отслеживания пользовательского поведения, конверсий и метрик производительности. Использовал GA4 в покер-платформе.',
   },
+  {
+    name: 'Google Tag Manager',
+    category: 'SEO',
+    color: 'lime',
+    tooltip: 'Управление тегами и аналитикой без изменения кода. Централизованное управление всеми аналитическими инструментами.',
+  },
+  {
+    name: 'Google Search Console',
+    category: 'SEO',
+    color: 'blue',
+    tooltip: 'Мониторинг индексации сайта, поисковых запросов и технических проблем SEO.',
+  },
+  {
+    name: 'Next-SEO',
+    category: 'SEO',
+    color: 'geekblue',
+    tooltip: 'SEO компоненты для Next.js. Управление meta-тегами, Open Graph, Twitter Cards.',
+  },
+  {
+    name: 'React Helmet Async',
+    category: 'SEO',
+    color: 'cyan',
+    tooltip: 'Асинхронная версия React Helmet для SSR. Управление SEO мета-тегами в React приложениях.',
+  },
+  {
+    name: 'Schema.org',
+    category: 'SEO',
+    color: 'purple',
+    tooltip: 'Структурированные данные для улучшения отображения в поисковых системах.',
+  },
+  
+  // Monitoring & Performance
   {
     name: 'Sentry',
     category: 'Other',
     color: 'red',
-    tooltip: 'Мониторинг ошибок и производительности. Использовал в проекте ИГИТ.',
+    tooltip: 'Мониторинг ошибок и производительности. Использовал в проекте ИГИТ и покер-платформе.',
+  },
+  {
+    name: 'Lighthouse CI',
+    category: 'Tools',
+    color: 'gold',
+    tooltip: 'Автоматизированный мониторинг производительности через Lighthouse. Интеграция в CI/CD.',
+  },
+  {
+    name: 'Web Vitals',
+    category: 'Other',
+    color: 'green',
+    tooltip: 'Метрики производительности веб-страниц (LCP, FID, CLS). Использовал для оптимизации покер-платформы.',
+  },
+  {
+    name: 'Bundle Analyzer',
+    category: 'Tools',
+    color: 'volcano',
+    tooltip: 'Анализ размера бандла для оптимизации. Выявление тяжелых зависимостей и возможностей для code splitting.',
   },
 ]
 
@@ -394,6 +546,7 @@ const categoryColors: Record<string, string> = {
   Styling: 'text-pink-400',
   Backend: 'text-green-400',
   DevOps: 'text-orange-400',
+  SEO: 'text-cyan-400',
   Other: 'text-slate-400',
 }
 
