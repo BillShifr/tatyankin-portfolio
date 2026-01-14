@@ -7,7 +7,6 @@ interface ScrollBlockModalProps {
   onClose?: () => void
 }
 
-// Функция для обработки markdown-разметки (жирный текст)
 const parseMarkdown = (text: string, keyPrefix: string) => {
   const parts: (string | JSX.Element)[] = []
   let lastIndex = 0
