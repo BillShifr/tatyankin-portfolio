@@ -27,7 +27,7 @@ const links: LinkBlock[] = [
     id: 'github',
     title: 'Личный GitHub',
     icon: <GithubOutlined className="text-6xl" />,
-    logoUrl: 'https://logo.clearbit.com/github.com',
+    logoUrl: undefined, // Убрано из-за проблем с clearbit.com
   },
   {
     id: 'portfolio',
@@ -38,7 +38,7 @@ const links: LinkBlock[] = [
     id: 'habr',
     title: 'Habr',
     icon: <BookOutlined className="text-6xl" />,
-    logoUrl: 'https://logo.clearbit.com/habr.com',
+    logoUrl: undefined, // Убрано из-за проблем с clearbit.com
   },
 ]
 
@@ -122,11 +122,11 @@ const PersonalLinks = () => {
         cancelButtonProps={{ style: { display: 'none' } }}
         centered
         width={500}
-        maskStyle={{
-          backgroundColor: 'rgba(15, 23, 42, 0.85)',
-          backdropFilter: 'blur(4px)',
-        }}
         styles={{
+          mask: {
+            backgroundColor: 'rgba(15, 23, 42, 0.85)',
+            backdropFilter: 'blur(4px)',
+          },
           content: {
             backgroundColor: '#1e293b',
             border: '2px solid #3b82f6',

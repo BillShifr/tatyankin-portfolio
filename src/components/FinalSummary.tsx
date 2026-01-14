@@ -37,6 +37,8 @@ const FinalSummary = () => {
     setIsClicked(true)
     setIsHovered(false)
     
+    let isFinalMessage = false
+    
     if (salary < 500000) {
       const newSalary = salary + 50000
       setSalary(newSalary)
@@ -44,19 +46,23 @@ const FinalSummary = () => {
       // Показываем сообщение
       if (newSalary >= 500000) {
         setMessageText('вот и моя вилка 300-500к)')
+        isFinalMessage = true
       } else {
         setMessageText('как неожиданно и приятно!')
       }
     } else {
       // Если уже достигнут максимум, все равно показываем финальную фразу
       setMessageText('вот и моя вилка 300-500к)')
+      isFinalMessage = true
     }
     
     // Всегда показываем сообщение при клике
     setShowMessage(true)
+    // Для финальной фразы показываем дольше
+    const messageDuration = isFinalMessage ? 4000 : 2000
     setTimeout(() => {
       setShowMessage(false)
-    }, 2000)
+    }, messageDuration)
     
     // Через некоторое время сбрасываем состояние клика
     setTimeout(() => {

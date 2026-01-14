@@ -221,11 +221,11 @@ const ScrollBlockModal = ({
       keyboard={false}
       width={800}
       centered
-      maskStyle={{
-        backgroundColor: 'rgba(15, 23, 42, 0.85)',
-        backdropFilter: 'blur(4px)',
-      }}
       styles={{
+        mask: {
+          backgroundColor: 'rgba(15, 23, 42, 0.85)',
+          backdropFilter: 'blur(4px)',
+        },
         content: {
           backgroundColor: '#1e293b',
           border: '2px solid #3b82f6',
