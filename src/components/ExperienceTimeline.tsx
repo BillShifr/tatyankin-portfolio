@@ -1,5 +1,5 @@
 import { Timeline, Card, Collapse, Button, Modal, Segmented } from 'antd'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import type { TimelineItemProps } from 'antd'
 import CompanyLogo from './CompanyLogo'
 import ContactMap from './ContactMap'
@@ -406,7 +406,34 @@ const realExperiences: ExperienceItem[] = [
 
 const ExperienceTimeline = () => {
   const [isRealMode, setIsRealMode] = useState(false)
+  const [showSegmented, setShowSegmented] = useState(true)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const startMarkerRef = useRef<HTMLDivElement>(null)
+  const endMarkerRef = useRef<HTMLDivElement>(null)
   const currentExperiences = isRealMode ? realExperiences : experiences
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!startMarkerRef.current || !endMarkerRef.current) return
+
+      const startRect = startMarkerRef.current.getBoundingClientRect()
+      const endRect = endMarkerRef.current.getBoundingClientRect()
+
+      // Показываем переключатель, если:
+      // 1. Начало секции еще не прошло верх viewport
+      // 2. Конец секции еще не достиг верха viewport
+      const shouldShow = startRect.top <= 100 && endRect.top > 100
+
+      setShowSegmented(shouldShow)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Проверяем при загрузке
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
   
   const timelineItems: TimelineItemProps[] = currentExperiences.map((exp, index) => ({
     dot: (
@@ -491,13 +518,24 @@ const ExperienceTimeline = () => {
 
   return (
     <section id="experience" className="py-12 px-4 max-w-5xl mx-auto">
-      <div className="bg-slate-900/50 rounded-3xl p-8 border border-slate-700/50">
+      <div ref={sectionRef} className="bg-slate-900/50 rounded-3xl p-8 border border-slate-700/50 relative">
+      {/* Маркер начала блока */}
+      <div ref={startMarkerRef} className="absolute top-0 left-0 w-full h-1" />
+      
       <div className="flex flex-col items-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-slate-100">
           Опыт работы
         </h2>
-        <div className="flex justify-center mb-8">
-          <div className="relative w-full max-w-2xl">
+        {/* Fixed переключатель */}
+        <div 
+          className="fixed left-1/2 transform -translate-x-1/2 z-50 transition-opacity duration-300"
+          style={{ 
+            top: '1rem',
+            opacity: showSegmented ? 1 : 0,
+            pointerEvents: showSegmented ? 'auto' : 'none'
+          }}
+        >
+          <div className="relative w-full max-w-2xl px-4">
             <Segmented
               value={isRealMode ? 'real' : 'expected'}
               onChange={(value) => setIsRealMode(value === 'real')}
@@ -543,6 +581,9 @@ const ExperienceTimeline = () => {
         </div>
       </div>
       <Timeline mode="left" items={timelineItems} />
+      
+      {/* Маркер конца блока для отслеживания */}
+      <div ref={endMarkerRef} className="absolute bottom-0 left-0 w-full h-1" />
       
       <ContactMap />
     </div>
