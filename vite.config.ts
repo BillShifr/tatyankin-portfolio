@@ -22,6 +22,23 @@ export default defineConfig(({ command }) => ({
         }
       },
     },
+    // Плагин для копирования CNAME в dist для GitHub Pages
+    {
+      name: 'copy-cname',
+      closeBundle() {
+        if (command === 'build') {
+          try {
+            const cnamePath = path.resolve(__dirname, 'CNAME')
+            const distCnamePath = path.resolve(__dirname, 'dist/CNAME')
+            const cnameContent = readFileSync(cnamePath, 'utf-8')
+            writeFileSync(distCnamePath, cnameContent)
+            console.log('✓ Copied CNAME to dist for GitHub Pages')
+          } catch (error) {
+            console.warn('Could not copy CNAME:', error)
+          }
+        }
+      },
+    },
   ],
   // Для custom domain используем '/', для GitHub Pages без custom domain '/tatyankin-portfolio/'
   // Если используете custom domain, всегда используйте '/'
