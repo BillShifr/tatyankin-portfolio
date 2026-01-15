@@ -9,6 +9,7 @@ import FinalSummary from '../components/FinalSummary'
 import Contact from '../components/Contact'
 import TechLeadBlock from '../components/TechLeadBlock'
 import HonestBlock from '../components/HonestBlock'
+import HRMessageBlock from '../components/HRMessageBlock'
 
 const Home = () => {
   return (
@@ -26,6 +27,7 @@ const Home = () => {
       </div>
       
       <Hero />
+      <HRMessageBlock />
       <Education />
       <ExperienceTimeline />
       <TechLeadBlock />
